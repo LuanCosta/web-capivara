@@ -1,0 +1,3 @@
+import { Institution } from "@/components/institution";
+export const metadata={title:"Contato"};
+export default function Contato(){const email=process.env.NEXT_PUBLIC_CONTACT_EMAIL||"contato@capivara.app.br";return <Institution eyebrow="FALE COM A GENTE" title="Contato" intro="Encontrou um erro, tem uma dúvida ou quer conversar sobre o Capivara? Estamos disponíveis."><h2>Suporte e correções</h2><p>Escreva para <a href={`mailto:${email}`}>{email}</a>. Para agilizar a análise de uma notícia, inclua o título ou link e explique o que precisa ser revisto.</p><h2>Tempo de resposta</h2><p>As mensagens são lidas em dias úteis. Solicitações que envolvam correção editorial são verificadas antes de qualquer alteração.</p></Institution>}
