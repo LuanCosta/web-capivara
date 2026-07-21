@@ -1,2 +1,2 @@
 import type { MetadataRoute } from "next";
-export default function robots():MetadataRoute.Robots{return {rules:{userAgent:"*",allow:"/"},sitemap:`${process.env.NEXT_PUBLIC_SITE_URL||"https://capivara.app.br"}/sitemap.xml`}}
+export default function robots():MetadataRoute.Robots{return {rules:{userAgent:"*",allow:"/"},sitemap:`${process.env.NEXT_PUBLIC_SITE_URL||"https://usecapivara.com.br"}/sitemap.xml`}}
