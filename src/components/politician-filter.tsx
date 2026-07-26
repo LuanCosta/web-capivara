@@ -2,7 +2,8 @@
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import type { Politician } from "@/lib/data";
+import { formatPoliticianRole } from "@/lib/politician";
 import { PoliticianCard } from "./ui";
 const norm=(v:string)=>v.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
-const roleLabel=(role:string)=>{const value=norm(role);if(value==="president")return"Presidência";return role.replace(/^./,letter=>letter.toUpperCase())};
+const roleLabel=formatPoliticianRole;
 export function PoliticianFilter({politicians}:{politicians:Politician[]}){const [query,setQuery]=useState("");const [active,setActive]=useState("Todos");const roles=useMemo(()=>["Todos",...Array.from(new Set(politicians.map(p=>roleLabel(p.role)).filter(Boolean))).sort((a,b)=>a.localeCompare(b,"pt-BR"))],[politicians]);const visible=useMemo(()=>politicians.filter(p=>norm(`${p.name} ${p.party}`).includes(norm(query))&&(active==="Todos"||norm(roleLabel(p.role))===norm(active))),[politicians,query,active]);return <div className="filter-panel"><label className="searchbox"><Search size={20}/><span className="sr-only">Buscar político</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Buscar por nome ou partido"/></label><div className="filters" aria-label="Filtrar políticos por cargo">{roles.map(o=>{const count=o==="Todos"?politicians.length:politicians.filter(p=>norm(roleLabel(p.role))===norm(o)).length;return <button type="button" className={`filter ${active===o?"active":""}`} onClick={()=>setActive(o)} aria-pressed={active===o} key={o}>{o} <span>{count}</span></button>})}</div><div className="results-count">{visible.length} {visible.length===1?"perfil encontrado":"perfis encontrados"}</div><div className="ranking-page">{visible.map(p=><PoliticianCard p={p} key={p.id}/>)}{!visible.length&&<div className="empty-state"><h3>Nenhum político encontrado.</h3><p>Revise a busca ou escolha outro filtro.</p></div>}</div></div>}
