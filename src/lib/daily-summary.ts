@@ -19,7 +19,6 @@ export function normalizeDailySummary(value:unknown):DailySummaryResponse{
   return{date:string(root.date),title:string(root.title,"Capivara Hoje"),description:string(root.description,"As principais notícias do dia, resumidas pelo Capivara."),estimatedReadingMinutes:Number.isFinite(minutes)&&minutes>0?minutes:undefined,generatedAt:optionalString(root.generatedAt),available:root.available===undefined?true:root.available===true,availableAt:optionalString(root.availableAt),slides};
 }
 
-export async function getDailySummaryForHome(now=new Date()):Promise<DailySummaryResponse|null>{
-  if(!isDailySummaryWindowOpen(now))return null;
+export async function getDailySummaryForHome():Promise<DailySummaryResponse|null>{
   try{const response=await fetch("https://bff-capivara.fly.dev/api/feed/daily-summary",{cache:"no-store",headers:{accept:"application/json"}});if(!response.ok)throw new Error(`Daily summary ${response.status}`);const summary=normalizeDailySummary(await response.json());if(!summary.available||!hasNewsSlides(summary))return null;return summary}catch(error){console.error("[daily-summary] Não foi possível carregar o resumo diário.",error);return null}
 }
