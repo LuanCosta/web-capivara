@@ -2,11 +2,13 @@
 import Link from "next/link";
 import { Clock,Download,ExternalLink,Share2,Sparkles,X } from "lucide-react";
 import { useCallback,useEffect,useRef,useState } from "react";
-import type { DailySummaryResponse,DailySummarySlide } from "@/lib/daily-summary";
+import { isDailySummaryWindowOpen,type DailySummaryResponse,type DailySummarySlide } from "@/lib/daily-summary";
 
 const VIEWED_KEY="capivara-daily-summary-viewed";
 const track=(event:string,params:Record<string,string|number|undefined>)=>window.gtag?.("event",event,params);
 const dateLabel=(date:string)=>{const parsed=new Date(`${date}T12:00:00`);return Number.isNaN(parsed.valueOf())?date:new Intl.DateTimeFormat("pt-BR",{day:"2-digit",month:"long",year:"numeric"}).format(parsed)};
+
+export function DailySummaryLoader(){const [summary,setSummary]=useState<DailySummaryResponse|null>(null);useEffect(()=>{if(!isDailySummaryWindowOpen(new Date()))return;const controller=new AbortController();fetch("/api/daily-summary",{cache:"no-store",signal:controller.signal,headers:{accept:"application/json"}}).then(async response=>response.status===204?null:response.ok?response.json():Promise.reject(new Error(`Daily summary ${response.status}`))).then(data=>{if(data)setSummary(data)}).catch(error=>{if(error?.name!=="AbortError")console.error("[daily-summary] Não foi possível carregar o resumo diário.",error)});return()=>controller.abort()},[]);return summary?<DailySummary summary={summary}/>:null}
 
 function SummaryImage({slide}:{slide:DailySummarySlide}){const [failed,setFailed]=useState(false);if(!slide.imageUrl||failed)return <div className="daily-image-placeholder"><span>●</span> capivara</div>;return <div className="daily-news-image" style={{backgroundImage:`url(${JSON.stringify(slide.imageUrl)})`}} role="img" aria-label="Imagem da notícia" onError={()=>setFailed(true)}><img src={slide.imageUrl} alt="" onError={()=>setFailed(true)}/></div>}
 

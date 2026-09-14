@@ -10,5 +10,5 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Cursor inválido." }, { status: 400 });
   }
 
-  return NextResponse.json(await getNewsPage(cursor, 10));
+  return NextResponse.json(await getNewsPage(cursor, 10, true),{headers:{"cache-control":"private, no-store"}});
 }
