@@ -1,17 +1,20 @@
-import type { ReactNode } from "react";
+"use client";
 
-const bulletPattern=/^[•●▪]\s*/;
-const numberedPattern=/^\d+[.)]\s*/;
-const isSectionTitle=(value:string)=>{const letters=value.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ]/g,"");return value.length<=120&&letters.length>=4&&value===value.toUpperCase()};
+import type { ComponentPropsWithoutRef,ReactNode } from "react";
+import ReactMarkdown,{defaultUrlTransform} from "react-markdown";
+import rehypeSanitize,{defaultSchema} from "rehype-sanitize";
+import remarkGfm from "remark-gfm";
 
-export function ArticleContent({paragraphs}:{paragraphs:string[]}){
-  const content:ReactNode[]=[];
-  for(let index=0;index<paragraphs.length;){
-    const paragraph=paragraphs[index];
-    if(isSectionTitle(paragraph)){content.push(<h3 className="article-section-title" key={`heading-${index}`}>{paragraph}</h3>);index++;continue}
-    if(bulletPattern.test(paragraph)){const items:string[]=[];const start=index;while(index<paragraphs.length&&bulletPattern.test(paragraphs[index])){items.push(paragraphs[index].replace(bulletPattern,"").trim());index++}content.push(<ul className="article-list" key={`bullets-${start}`}>{items.map((item,itemIndex)=><li key={itemIndex}>{item}</li>)}</ul>);continue}
-    if(numberedPattern.test(paragraph)){const items:string[]=[];const start=index;while(index<paragraphs.length&&numberedPattern.test(paragraphs[index])){items.push(paragraphs[index].replace(numberedPattern,"").trim());index++}content.push(<ol className="article-list article-numbered-list" key={`numbers-${start}`}>{items.map((item,itemIndex)=><li key={itemIndex}>{item}</li>)}</ol>);continue}
-    content.push(<p key={`paragraph-${index}`}>{paragraph}</p>);index++;
-  }
-  return <>{content}</>;
-}
+const safeSchema={...defaultSchema,attributes:{...defaultSchema.attributes,blockquote:[...(defaultSchema.attributes?.blockquote??[]),["className",/^markdown-alert(?:-(note|tip|warning|important))?$/]]}};
+const alertPattern=/^\[!(NOTE|TIP|WARNING|IMPORTANT)\]\s*\n?/i;
+
+function remarkAlerts(){return(tree:unknown)=>{const visit=(node:any)=>{if(node?.type==="blockquote"){const text=node.children?.[0]?.children?.[0];const match=typeof text?.value==="string"?text.value.match(alertPattern):null;if(match){text.value=text.value.replace(alertPattern,"");node.data={...(node.data??{}),hProperties:{className:`markdown-alert markdown-alert-${match[1].toLowerCase()}`}}}}if(Array.isArray(node?.children))node.children.forEach(visit)};visit(tree)}}
+const safeUrlTransform=(url:string)=>defaultUrlTransform(url);
+
+function SafeImage(props:ComponentPropsWithoutRef<"img">){return <img {...props} alt={props.alt?.trim()||"Imagem da notícia"} loading="lazy" onError={event=>{event.currentTarget.hidden=true}}/>}
+function ExternalLink({href,children,...props}:ComponentPropsWithoutRef<"a">){const external=Boolean(href&&/^https?:\/\//i.test(href));return <a {...props} href={href} {...(external?{target:"_blank",rel:"noopener noreferrer"}:{})}>{children}</a>}
+
+export function ArticleContent({content}:{content:string}){return <div className="markdown-content"><ReactMarkdown remarkPlugins={[remarkGfm,remarkAlerts]} rehypePlugins={[[rehypeSanitize,safeSchema]]} urlTransform={safeUrlTransform} components={{a:ExternalLink,img:SafeImage}}>{content}</ReactMarkdown></div>}
+
+const inlineComponents={p:({children}:{children?:ReactNode})=><>{children}</>,a:({children}:{children?:ReactNode})=><>{children}</>,img:()=>null,h1:()=>null,h2:()=>null,h3:()=>null,h4:()=>null,h5:()=>null,h6:()=>null,blockquote:()=>null,ul:()=>null,ol:()=>null,table:()=>null,hr:()=>null,pre:()=>null};
+export function InlineMarkdown({content}:{content:string}){return <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[[rehypeSanitize,safeSchema]]} urlTransform={safeUrlTransform} components={inlineComponents}>{content}</ReactMarkdown>}
