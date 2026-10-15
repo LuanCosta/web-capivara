@@ -86,3 +86,29 @@ main>.daily-summary-card{margin-top:22px;margin-bottom:22px;padding:31px 34px;bo
 .list .news-card{display:block}.list .news-card-link{display:grid;grid-template-columns:240px 1fr}.list .feed-card-footer{margin-left:240px}.latest-grid .news-card,.news-grid .news-card{display:flex;flex-direction:column}.latest-grid .news-card-link,.news-grid .news-card-link{flex:1}
 @media(max-width:800px){.markdown-content{font-size:16px;line-height:1.72}.markdown-content h1{font-size:27px}.markdown-content h2{font-size:23px}.markdown-content h3{font-size:19px}.markdown-content pre{padding:15px}.markdown-content table{font-size:14px}.list .news-card-link{grid-template-columns:1fr}.list .feed-card-footer{margin-left:0}.action-text{display:none}.feed-card-actions button:last-child{padding-inline:12px}}
 .markdown-content table{display:block;max-width:100%;min-width:0;overflow-x:auto;white-space:nowrap}
+
+/* Mobile viewport and compact floating actions */
+html,body{max-width:100%;overflow-x:hidden}
+@media(max-width:650px){
+  .news-question-float{right:12px;bottom:calc(14px + env(safe-area-inset-bottom));min-height:42px;padding:0 13px;font-size:12px;box-shadow:0 10px 28px rgba(104,32,183,.36)}
+  body:has(.app-float) .news-question-float{bottom:calc(154px + env(safe-area-inset-bottom))}
+  .detail-hero{padding-top:36px}
+  .detail-hero h1{font-size:clamp(32px,9.5vw,40px);line-height:1.08;letter-spacing:-1.5px;overflow-wrap:anywhere}
+  .detail-subtitle{font-size:17px;line-height:1.55}
+}
+
+/* Keep long Capivara Hoje slides usable on short mobile screens */
+@media(max-width:650px){
+  .daily-news{touch-action:pan-y}
+  .daily-news-image,.daily-image-placeholder{flex-basis:34%;min-height:180px}
+  .daily-news-copy{min-height:0;margin-top:-16px;padding:0 18px calc(18px + env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+  .daily-news-copy::-webkit-scrollbar{display:none}
+  .daily-news h2{margin:10px 0 6px;font-size:clamp(21px,6.4vw,26px);line-height:1.08}
+  .daily-news-copy>p{-webkit-line-clamp:3;font-size:13px;line-height:1.42}
+  .daily-news-copy>small{margin-top:6px}
+  .daily-candidates{flex-wrap:nowrap;margin:8px -18px 0;padding:0 18px 5px;overflow-x:auto;scrollbar-width:none}
+  .daily-candidates::-webkit-scrollbar{display:none}
+  .daily-candidates span{flex:0 0 auto}
+  .daily-news-copy>a{position:sticky;bottom:0;flex:0 0 auto;min-height:43px;margin-top:10px;box-shadow:0 -10px 24px #0b151f}
+  .daily-hint{display:none}
+}
