@@ -116,3 +116,27 @@ html,body{max-width:100%;overflow-x:hidden}
   .daily-news-copy>a{position:sticky;bottom:0;flex:0 0 auto;min-height:43px;margin-top:10px;box-shadow:0 -10px 24px #0b151f}
   .daily-hint{display:none}
 }
+
+/* Politicians mentioned in a news article */
+.mentioned-politicians{margin-top:30px;padding:24px;border:1px solid #2b3b4b;border-radius:20px;background:linear-gradient(145deg,#0e1924,#0a141e)}
+.mentioned-politicians-heading span{color:#c77eff;font-size:10px;font-weight:900;letter-spacing:1px}
+.mentioned-politicians-heading h2{margin:4px 0 17px;font-size:22px;letter-spacing:-.4px}
+.mentioned-politicians-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mentioned-politician{display:grid;grid-template-columns:50px minmax(0,1fr) 34px;gap:12px;align-items:center;min-width:0;padding:12px;border:1px solid #293949;border-radius:14px;background:#111d29;transition:transform .18s,border-color .18s,background .18s}
+.mentioned-politician:hover,.mentioned-politician:focus-visible{border-color:#7343a0;background:#151d2c;transform:translateY(-1px)}
+.mentioned-politician:focus-visible{outline:3px solid rgba(190,111,245,.3);outline-offset:2px}
+.mentioned-politician-avatar{display:grid;place-items:center;width:50px;height:50px;border-radius:50%;background-color:#0878be;background-image:linear-gradient(145deg,#127fc7,#0866a9);background-position:center;background-size:cover;color:#fff;font-size:14px;font-weight:900}
+.mentioned-politician-copy{display:block;min-width:0}
+.mentioned-politician-copy strong{display:block;overflow:hidden;color:#f3f5f7;font-size:15px;text-overflow:ellipsis;white-space:nowrap}
+.mentioned-politician-copy>span{display:block;margin-top:2px;color:#a8b3be;font-size:11px}
+.mentioned-politician-copy b{color:#ce8fff;font-weight:900}
+.mentioned-politician-copy small{display:block;overflow:hidden;margin-top:3px;color:#7f8d9a;font-size:10px;text-overflow:ellipsis;white-space:nowrap}
+.mentioned-politician-arrow{display:grid;place-items:center;width:32px;height:32px;border:1px solid #354657;border-radius:50%;color:#aeb9c5}
+@media(max-width:650px){
+  .mentioned-politicians{margin-top:22px;padding:18px 0 16px;border-right:0;border-left:0;border-radius:0}
+  .mentioned-politicians-heading{padding:0 4px}
+  .mentioned-politicians-heading h2{font-size:20px}
+  .mentioned-politicians-list{display:flex;gap:9px;margin:0 -14px;padding:0 14px 5px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none}
+  .mentioned-politicians-list::-webkit-scrollbar{display:none}
+  .mentioned-politician{flex:0 0 min(82vw,310px);scroll-snap-align:start}
+}
