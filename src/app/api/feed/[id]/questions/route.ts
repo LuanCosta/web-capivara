@@ -3,7 +3,7 @@ import { API } from "@/lib/data";
 import type { FeedQuestionType } from "@/lib/feed-questions";
 import { allowRequest,clientIp } from "@/lib/proposal-security";
 
-const questionTypes=new Set<FeedQuestionType>(["EXPLAIN_NEWS","PEOPLE_MENTIONED"]);
+const questionTypes=new Set<FeedQuestionType>(["EXPLAIN_NEWS","PEOPLE_MENTIONED","HOW_IT_AFFECTS_ME"]);
 export async function POST(request:Request,{params}:{params:Promise<{id:string}>}){
   if(!allowRequest(`feed-question:${clientIp(request)}`,20,60*60_000))return NextResponse.json({error:"Muitas solicitações."},{status:429});
   const {id}=await params;const feedId=Number(id);if(!Number.isInteger(feedId)||feedId<=0)return NextResponse.json({error:"Notícia inválida."},{status:400});

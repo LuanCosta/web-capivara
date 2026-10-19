@@ -17,7 +17,7 @@ export default function Privacidade(){return <Institution eyebrow="ÚLTIMA ATUAL
   <h3>2.2 Armazenamento local e reações</h3>
   <p>Além da escolha de medição e publicidade, o site pode armazenar localmente a data em que o banner de divulgação do aplicativo foi fechado, a identificação do resumo diário já visualizado e, quando o usuário utiliza reações, um token técnico de sessão e sua validade.</p>
   <p>Likes e dislikes utilizam esse token técnico para controlar a reação atual e reduzir duplicidades, sem exigir cadastro. Esse mecanismo não representa anonimato absoluto, pois os serviços envolvidos também podem processar endereço IP e outros dados técnicos da conexão.</p>
-  <p>A versão web não oferece atualmente uma função de favoritos ou notícias salvas. Os filtros de políticos e notícias exibidos no site são aplicados no próprio navegador; o texto digitado no campo de busca de políticos não é enviado ao backend.</p>
+  <p>A versão web permite salvar notícias localmente no navegador e registra localmente a referência da última visita usada na seção “Enquanto você esteve fora”, além do estado das dicas de apresentação. Esses dados podem ser removidos pela própria interface, quando houver essa opção, ou limpando o armazenamento do domínio.</p>
 
   <h2>3. Analytics e diagnóstico no Android</h2>
   <p>O aplicativo Android utiliza o Google Analytics para Firebase para produzir métricas de navegação, utilização das funcionalidades e interações. Também utiliza o Firebase Crashlytics para diagnosticar falhas e acompanhar a estabilidade do aplicativo.</p>
@@ -34,7 +34,7 @@ export default function Privacidade(){return <Institution eyebrow="ÚLTIMA ATUAL
 
   <h2>6. Pesquisas, propostas e comunicação com o backend</h2>
   <p>Quando uma funcionalidade precisa consultar os serviços do Capivara, o site ou o aplicativo envia ao backend somente os dados necessários para executar a solicitação. Isso pode incluir identificadores de políticos, perguntas selecionadas, tipos de consulta e termos de pesquisa usados nas funcionalidades que realizam busca no servidor.</p>
-  <p>No site, consultas e comparações de propostas enviam ao backend os identificadores dos políticos e as perguntas necessárias à análise. Como indicado na seção 2, a busca textual de políticos disponível na versão web é processada localmente.</p>
+  <p>No site, pesquisas de políticos e propostas enviam ao backend os filtros, identificadores e termos necessários para executar a consulta. Perguntas sobre uma notícia são enviadas somente depois que o usuário escolhe explicitamente uma das opções disponíveis. A comparação pública de propostas foi retirada da experiência web.</p>
   <p>A comunicação utiliza HTTPS. Os serviços de backend, hospedagem e segurança podem processar endereço IP, data, horário, rota acessada, tipo de requisição e outras informações técnicas para entregar a resposta, aplicar limites de uso, prevenir abuso, diagnosticar problemas e manter a segurança.</p>
   <p>Esta política não afirma que os termos pesquisados sejam enviados ao Analytics, usados para personalizar anúncios ou mantidos em um histórico permanente.</p>
 

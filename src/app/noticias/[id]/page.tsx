@@ -4,6 +4,7 @@ import { ArrowLeft,ArrowRight,ExternalLink } from "lucide-react";
 import { notFound } from "next/navigation";
 import { ArticleContent } from "@/components/article-content";
 import { NewsQuestionPanel } from "@/components/news-question-panel";
+import { SafeAvatar } from "@/components/safe-avatar";
 import { PageShell } from "@/components/ui";
 import { getNewsById } from "@/lib/data";
 
@@ -11,5 +12,25 @@ export async function generateMetadata({params}:{params:Promise<{id:string}>}):P
 
 export default async function Detail({params}:{params:Promise<{id:string}>}){
   const {id}=await params;if(!id)notFound();const news=await getNewsById(id);const feedId=Number(id);const validFeedId=Number.isInteger(feedId)&&feedId>0;
-  return <PageShell><article><div className="wrap detail-hero"><Link className="article-back" href="/noticias"><ArrowLeft size={16}/> Todas as notícias</Link><div className="detail-meta"><span className="tag">{news.category}</span><span>{news.source} · {news.date}</span></div><h1>{news.title}</h1><p className="detail-subtitle">{news.summary}</p>{news.image&&<div className="detail-image" style={{backgroundImage:`url(${JSON.stringify(news.image)})`}}/>}{Boolean(news.mentionedPoliticians?.length)&&<section className="mentioned-politicians" aria-labelledby="mentioned-politicians-title"><div className="mentioned-politicians-heading"><span>PERFIS RELACIONADOS</span><h2 id="mentioned-politicians-title">Políticos mencionados</h2></div><div className="mentioned-politicians-list">{news.mentionedPoliticians!.map(politician=><Link href={`/politicos/${politician.id}`} className="mentioned-politician" key={politician.id}>{politician.image?<span className="mentioned-politician-avatar" style={{backgroundImage:`url(${JSON.stringify(politician.image)})`}}/>:<span className="mentioned-politician-avatar">{politician.initials}</span>}<span className="mentioned-politician-copy"><strong>{politician.name}</strong><span><b>{politician.party}</b>{politician.number&&politician.number!=="0"?` · ${politician.number}`:""}</span>{politician.role&&<small>{politician.role}</small>}</span><span className="mentioned-politician-arrow" aria-hidden="true"><ArrowRight size={16}/></span></Link>)}</div></section>}</div><div className="wrap article">{news.content&&<section className="article-content"><h2>A notícia</h2><ArticleContent content={news.content}/>{news.sourceUrl&&<a className="source-link" href={news.sourceUrl} target="_blank" rel="noopener noreferrer">Ler publicação original em {news.source} <ExternalLink size={14}/></a>}</section>}<section className="capivara-explains"><div className="explain-heading"><small>CAPIVARA EXPLICA ✨</small><h2>Os principais pontos, sem complicação</h2>{news.summaryAI&&<p>{news.summaryAI}</p>}</div>{news.explain?.length?<div className="explain-list">{news.explain.map((item,index)=><div className="explain-item" key={`${item.position}-${item.title}`}><span>{index+1}</span><div><h3>{item.title}</h3><p>{item.description}</p></div></div>)}</div>:<div className="explain"><h3>O que aconteceu</h3><p>{news.summaryAI||news.summary}</p></div>}</section><nav className="article-next"><div><small>CONTINUE NO CAPIVARA WEB</small><h2>Mais notícias, mais contexto.</h2><p>Acompanhe as últimas atualizações diretamente pelo navegador, em qualquer dispositivo.</p></div><Link className="button" href="/noticias">Ver últimas notícias</Link></nav></div></article>{validFeedId&&<NewsQuestionPanel feedId={feedId}/>}</PageShell>
+  return <PageShell><article>
+    <div className="wrap detail-hero">
+      <Link className="article-back" href="/noticias"><ArrowLeft size={16}/> Todas as notícias</Link>
+      <div className="detail-meta"><span className="tag">{news.category}</span><span>{news.source} · {news.date}</span></div>
+      <h1>{news.title}</h1><p className="detail-subtitle">{news.summary}</p>
+      {news.image&&<div className="detail-image" style={{backgroundImage:`url(${JSON.stringify(news.image)})`}}/>}
+      {Boolean(news.mentionedPoliticians?.length)&&<section className="mentioned-politicians" aria-labelledby="mentioned-politicians-title">
+        <div className="mentioned-politicians-heading"><span>PERFIS RELACIONADOS</span><h2 id="mentioned-politicians-title">Políticos mencionados</h2></div>
+        <div className="mentioned-politicians-list">{news.mentionedPoliticians!.map(politician=><Link href={`/politicos/${politician.id}`} className="mentioned-politician" key={politician.id}>
+          <SafeAvatar src={politician.image} initials={politician.initials} className="mentioned-politician-avatar"/>
+          <span className="mentioned-politician-copy"><strong>{politician.name}</strong><span><b>{politician.party}</b></span>{politician.role&&<small>{politician.role}</small>}</span>
+          <span className="mentioned-politician-arrow" aria-hidden="true"><ArrowRight size={16}/></span>
+        </Link>)}</div>
+      </section>}
+    </div>
+    <div className="wrap article">
+      {news.content&&<section className="article-content"><h2>A notícia</h2><ArticleContent content={news.content}/>{news.sourceUrl&&<a className="source-link" href={news.sourceUrl} target="_blank" rel="noopener noreferrer">Ler publicação original em {news.source} <ExternalLink size={14}/></a>}</section>}
+      <section className="capivara-explains"><div className="explain-heading"><small>CAPIVARA EXPLICA ✨</small><h2>Os principais pontos, sem complicação</h2>{news.summaryAI&&<p>{news.summaryAI}</p>}</div>{news.explain?.length?<div className="explain-list">{news.explain.map((item,index)=><div className="explain-item" key={`${item.position}-${item.title}`}><span>{index+1}</span><div><h3>{item.title}</h3><p>{item.description}</p></div></div>)}</div>:<div className="explain"><h3>O que aconteceu</h3><p>{news.summaryAI||news.summary}</p></div>}</section>
+      <nav className="article-next"><div><small>CONTINUE NO CAPIVARA WEB</small><h2>Mais notícias, mais contexto.</h2><p>Acompanhe as últimas atualizações diretamente pelo navegador, em qualquer dispositivo.</p></div><Link className="button" href="/noticias">Ver últimas notícias</Link></nav>
+    </div>
+  </article>{validFeedId&&<NewsQuestionPanel feedId={feedId}/>}</PageShell>
 }

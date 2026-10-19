@@ -21,8 +21,12 @@ function pageContext(pathname: string) {
   if (pathname === "/noticias") return { pageType: "news_listing", contentGroup: "Notícias" };
   if (pathname.startsWith("/noticias/")) return { pageType: "news_detail", contentGroup: "Notícias" };
   if (pathname === "/politicos") return { pageType: "politician_listing", contentGroup: "Políticos" };
+  if (pathname === "/capivara") return { pageType: "voters_listing", contentGroup: "Capivara" };
+  if (/^\/politicos\/[^/]+\/votacoes/.test(pathname)) return { pageType: "politician_votes", contentGroup: "Capivara" };
+  if (pathname.startsWith("/propostas/")) return { pageType: "proposal_detail", contentGroup: "Capivara" };
   if (pathname.startsWith("/politicos/")) return { pageType: "politician_detail", contentGroup: "Políticos" };
   if (pathname === "/em-alta") return { pageType: "trending", contentGroup: "Em alta" };
+  if (pathname === "/salvos") return { pageType: "saved_news", contentGroup: "Notícias" };
   return { pageType: "institutional", contentGroup: "Institucional" };
 }
 
