@@ -9,11 +9,17 @@ const securityHeaders = [
       "object-src 'none'",
       "frame-ancestors 'none'",
       "form-action 'self'",
-      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
+      // AdSense loads scripts and creatives from a changing set of HTTPS hosts.
+      // Google only supports strict nonce-based CSPs or a policy permissive enough
+      // to let those HTTPS resources load. Keeping this here (instead of a brittle
+      // host allowlist) prevents Auto Ads from silently breaking when hosts change.
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https:",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' https: data:",
       "font-src 'self' data:",
-      "connect-src 'self' https://bff-capivara.fly.dev https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com",
+      "connect-src 'self' https:",
+      "frame-src https:",
+      "worker-src 'self' blob:",
       "upgrade-insecure-requests",
     ].join("; "),
   },
