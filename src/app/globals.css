@@ -10,6 +10,7 @@
 
 /* Keep all interactive controls and results in the main content column */
 .filter-panel{min-width:0;width:100%}.filter-panel .filters{display:flex;flex-wrap:wrap;overflow:visible}.filter-panel .list,.filter-panel .ranking-page{width:100%}
+.news-index-column{min-width:0}.news-pagination{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.news-pagination a{display:inline-flex;align-items:center;gap:7px;padding:11px 15px;border:1px solid #354657;border-radius:10px;color:#d2dae1;font-size:12px;font-weight:900}.news-pagination a:last-child{margin-left:auto}.news-pagination a:hover{border-color:#8b35ee;color:#fff}
 @media(max-width:800px){.filter-panel .filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}.filter-panel .filters::-webkit-scrollbar{display:none}}
 
 /* Paginated feed and complete public article */

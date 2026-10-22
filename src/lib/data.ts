@@ -32,11 +32,22 @@ const mentionedPoliticians=(value:unknown):MentionedPolitician[]=>{const candida
 async function raw(path:string,snapshot=false):Promise<Raw[]>{const r=await fetch(`${API}${path}`,snapshot?{cache:"force-cache"}:{next:{revalidate:300}});if(!r.ok)throw new Error(`API ${r.status}`);const json=await r.json();const value=json.data??json;return Array.isArray(value)?value:[]}
 const mapNews=(n:Raw,i=0):News=>{const mentioned=mentionedPoliticians(n.feed_candidates);return{id:String(n.id??i),title:text(n.titulo??n.title,"Notícia do Capivara"),summary:text(n.resumo??n.summary,"Abra para entender os principais pontos desta notícia."),content:text(n.conteudo),summaryAI:text(n.summary_ai),category:text(n.categoria??n.category,"POLÍTICA"),source:text(n.fonte_nome??n.source,"Capivara"),sourceUrl:safeExternalUrl(n.fonte_url),date:date(n.criado_em??n.date),publishedAt:text(n.criado_em??n.date)||undefined,image:validImage(n.imagem_url??n.image),politicians:mentioned.map(p=>p.name),mentionedPoliticians:mentioned,explain:Array.isArray(n.feed_impact)?(n.feed_impact as Raw[]).map((item,index)=>({position:Number(item.position??index+1),title:text(item.title,`Ponto ${index+1}`),description:text(item.description),type:text(item.type)||undefined})).sort((a,b)=>a.position-b.position):[]}};
 const newestFirst=(items:News[])=>[...items].sort((a,b)=>{const aTime=a.publishedAt?Date.parse(a.publishedAt):0;const bTime=b.publishedAt?Date.parse(b.publishedAt):0;return bTime-aTime||Number(b.id)-Number(a.id)});
-async function paged(path:string,fallback:News[]=[],fresh=false,snapshot=false):Promise<NewsPage>{try{const r=await fetch(`${API}${path}`,fresh?{cache:"no-store"}:snapshot?{cache:"force-cache"}:{next:{revalidate:60}});if(!r.ok)throw new Error(`API ${r.status}`);const json=await r.json() as Raw;const items=Array.isArray(json.items)?newestFirst((json.items as Raw[]).map(mapNews)):[];return{items,nextCursor:typeof json.nextCursor==="string"?json.nextCursor:null,hasMore:Boolean(json.hasMore)}}catch{return process.env.NODE_ENV==="development"?{items:newestFirst(fallback),nextCursor:null,hasMore:false,unavailable:true}:{items:[],nextCursor:null,hasMore:false,unavailable:true}}}
+async function paged(path:string,fallback:News[]=[],fresh=false,snapshot=false,revalidateSeconds=60):Promise<NewsPage>{try{const r=await fetch(`${API}${path}`,fresh?{cache:"no-store"}:snapshot?{cache:"force-cache"}:{next:{revalidate:revalidateSeconds}});if(!r.ok)throw new Error(`API ${r.status}`);const json=await r.json() as Raw;const items=Array.isArray(json.items)?newestFirst((json.items as Raw[]).map(mapNews)):[];return{items,nextCursor:typeof json.nextCursor==="string"?json.nextCursor:null,hasMore:Boolean(json.hasMore)}}catch{return process.env.NODE_ENV==="development"?{items:newestFirst(fallback),nextCursor:null,hasMore:false,unavailable:true}:{items:[],nextCursor:null,hasMore:false,unavailable:true}}}
 export const getNewsPage=(cursor?:string|null,limit=10,fresh=false)=>paged(`/feed/paged?limit=${limit}${cursor?`&cursor=${encodeURIComponent(cursor)}`:""}`,fallbackNews,fresh);
 export const getNewsPageSnapshot=(limit=10)=>paged(`/feed/paged?limit=${limit}`,fallbackNews,false,true);
 export async function getNews():Promise<News[]>{return(await getNewsPage(null,10)).items}
 export async function getNewsSnapshot():Promise<News[]>{return(await getNewsPageSnapshot(10)).items}
+export async function getAllNewsForSitemap(maxPages=100):Promise<News[]>{
+  const items:News[]=[];const ids=new Set<string>();const cursors=new Set<string>();let cursor:string|null=null;
+  for(let pageNumber=0;pageNumber<maxPages;pageNumber+=1){
+    const page=await paged(`/feed/paged?limit=30${cursor?`&cursor=${encodeURIComponent(cursor)}`:""}`,[],false,false,3600);
+    if(page.unavailable)break;
+    for(const item of page.items){if(!ids.has(item.id)){ids.add(item.id);items.push(item)}}
+    if(!page.hasMore||!page.nextCursor||cursors.has(page.nextCursor))break;
+    cursors.add(page.nextCursor);cursor=page.nextCursor;
+  }
+  return newestFirst(items);
+}
 export const getCandidateNewsPage=(id:string,cursor?:string|null,limit=10)=>paged(`/candidates/${id}/feed/paged?limit=${limit}${cursor?`&cursor=${encodeURIComponent(cursor)}`:""}`);
 export async function getCandidateNews(id:string):Promise<News[]>{return(await getCandidateNewsPage(id)).items}
 export async function getPoliticians():Promise<Politician[]>{try{return (await raw("/candidates")).map((p,i)=>{const name=text(p.nome??p.name,"Político");return{id:String(p.id??i),name,party:text(p.partido??p.party,"—"),number:p.numero?String(p.numero):undefined,initials:initials(name),role:text(p.bio??p.cargo,"Perfil político"),image:validImage(p.imagem??p.imagem_url)}})}catch{return fallbackPoliticians}}

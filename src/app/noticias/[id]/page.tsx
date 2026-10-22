@@ -8,11 +8,22 @@ import { SafeAvatar } from "@/components/safe-avatar";
 import { PageShell } from "@/components/ui";
 import { getNewsById } from "@/lib/data";
 
-export async function generateMetadata({params}:{params:Promise<{id:string}>}):Promise<Metadata>{const {id}=await params;const news=await getNewsById(id);return{title:news.title,description:news.summary,openGraph:{title:news.title,description:news.summary,images:news.image?[news.image]:[]}}}
+const base=(process.env.NEXT_PUBLIC_SITE_URL||"https://usecapivara.com.br").replace(/\/$/,"");
+const isoDate=(value?:string)=>{if(!value)return undefined;const parsed=new Date(value);return Number.isNaN(parsed.valueOf())?undefined:parsed.toISOString()};
+
+export async function generateMetadata({params}:{params:Promise<{id:string}>}):Promise<Metadata>{
+  const {id}=await params;
+  try{
+    const news=await getNewsById(id);const canonical=`/noticias/${encodeURIComponent(id)}`;const publishedTime=isoDate(news.publishedAt);
+    return {title:news.title,description:news.summary,alternates:{canonical},openGraph:{type:"article",url:canonical,title:news.title,description:news.summary,publishedTime,images:news.image?[{url:news.image,alt:news.title}]:[]},twitter:{card:"summary_large_image",title:news.title,description:news.summary,images:news.image?[news.image]:[]}};
+  }catch{return{title:"Notícia não encontrada",robots:{index:false,follow:false}}}
+}
 
 export default async function Detail({params}:{params:Promise<{id:string}>}){
-  const {id}=await params;if(!id)notFound();const news=await getNewsById(id);const feedId=Number(id);const validFeedId=Number.isInteger(feedId)&&feedId>0;
-  return <PageShell><article>
+  const {id}=await params;if(!id)notFound();const news=await getNewsById(id).catch(()=>notFound());const feedId=Number(id);const validFeedId=Number.isInteger(feedId)&&feedId>0;
+  const canonical=`${base}/noticias/${encodeURIComponent(id)}`;const publishedTime=isoDate(news.publishedAt);
+  const structuredData={"@context":"https://schema.org","@type":"NewsArticle",headline:news.title,description:news.summary,url:canonical,mainEntityOfPage:{"@type":"WebPage","@id":canonical},inLanguage:"pt-BR",articleSection:news.category,author:{"@type":"Organization",name:news.source},publisher:{"@type":"Organization",name:"Capivara",url:base},...(news.image?{image:[news.image]}:{}),...(publishedTime?{datePublished:publishedTime,dateModified:publishedTime}:{}),...(news.sourceUrl?{isBasedOn:news.sourceUrl}:{})};
+  return <PageShell><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(structuredData).replace(/</g,"\\u003c")}}/><article>
     <div className="wrap detail-hero">
       <Link className="article-back" href="/noticias"><ArrowLeft size={16}/> Todas as notícias</Link>
       <div className="detail-meta"><span className="tag">{news.category}</span><span>{news.source} · {news.date}</span></div>
