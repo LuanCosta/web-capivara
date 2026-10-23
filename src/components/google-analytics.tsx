@@ -16,6 +16,16 @@ declare global {
 
 const STORAGE_KEY = "capivara-analytics-consent";
 
+function consentSettings(consent: Consent) {
+  const permission = consent === "accepted" ? "granted" : "denied";
+  return {
+    ad_storage: permission,
+    analytics_storage: permission,
+    ad_user_data: permission,
+    ad_personalization: permission,
+  };
+}
+
 function pageContext(pathname: string) {
   if (pathname === "/") return { pageType: "home", contentGroup: "Início" };
   if (pathname === "/noticias") return { pageType: "news_listing", contentGroup: "Notícias" };
@@ -38,11 +48,13 @@ export function GoogleAnalytics({ measurementId, adsenseClient }: { measurementI
 
   useEffect(() => {
     const saved = window.localStorage.getItem(STORAGE_KEY);
-    setConsent(saved === "accepted" || saved === "rejected" ? saved : null);
+    const savedConsent = saved === "accepted" || saved === "rejected" ? saved : null;
+    if (savedConsent) window.gtag?.("consent", "update", consentSettings(savedConsent));
+    setConsent(savedConsent);
   }, []);
 
   useEffect(() => {
-    if (consent !== "accepted" || !tagReady || !window.gtag || lastTrackedPath.current === pathname) return;
+    if (!tagReady || !window.gtag || lastTrackedPath.current === pathname) return;
 
     const timer = window.setTimeout(() => {
       const { pageType, contentGroup } = pageContext(pathname);
@@ -57,45 +69,41 @@ export function GoogleAnalytics({ measurementId, adsenseClient }: { measurementI
     }, 0);
 
     return () => window.clearTimeout(timer);
-  }, [consent, measurementId, pathname, tagReady]);
+  }, [measurementId, pathname, tagReady]);
 
   function choose(value: Consent) {
+    window.gtag?.("consent", "update", consentSettings(value));
     window.localStorage.setItem(STORAGE_KEY, value);
     setConsent(value);
   }
 
+  function initializeAnalytics() {
+    window.gtag?.("js", new Date());
+    window.gtag?.("config", measurementId, { send_page_view: false });
+    setTagReady(true);
+  }
+
   return (
     <>
-      {consent === "accepted" && (
-        <>
-          <Script
-            id="capivara-google-adsense"
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
-            strategy="afterInteractive"
-            crossOrigin="anonymous"
-          />
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-            strategy="afterInteractive"
-            onReady={() => setTagReady(true)}
-          />
-          <Script id="capivara-google-analytics" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              window.gtag = function(){window.dataLayer.push(arguments);};
-              window.gtag('js', new Date());
-              window.gtag('config', '${measurementId}', { send_page_view: false });
-            `}
-          </Script>
-        </>
-      )}
+      <Script
+        id="capivara-google-adsense"
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
+        strategy="afterInteractive"
+        crossOrigin="anonymous"
+      />
+      <Script
+        id="capivara-google-analytics"
+        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+        strategy="afterInteractive"
+        onReady={initializeAnalytics}
+      />
 
       {consent === null && (
         <aside className="consent-banner" aria-label="Preferências de privacidade">
           <div>
             <strong>Podemos usar medição e publicidade?</strong>
             <p>
-              Usamos serviços do Google para medir visitas e, quando disponíveis, exibir anúncios.{" "}
+              Sem sua autorização, a medição e os anúncios funcionam de forma limitada. Ao aceitar, você permite a medição completa e anúncios personalizados.{" "}
               <Link href="/politica-de-privacidade">Saiba mais</Link>
             </p>
           </div>
