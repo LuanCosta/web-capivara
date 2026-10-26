@@ -156,3 +156,222 @@ html,body{max-width:100%;overflow-x:hidden}
 .vote-search{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:end;padding:18px;border:1px solid #2d4050;border-radius:18px;background:linear-gradient(145deg,#101d29,#0b1620)}.vote-search label{display:grid;gap:8px;color:#a1afba;font-size:11px;font-weight:900}.vote-search label>div{position:relative}.vote-search label svg{position:absolute;top:14px;left:14px;color:#8796a3}.vote-search input{width:100%;height:48px;padding:0 15px 0 43px;border:1px solid #3a4c5c;border-radius:12px;background:#07121b;color:#f2f5f7;font:inherit}.vote-search input:focus{border-color:#a956e2;outline:3px solid rgba(169,86,226,.18)}.vote-search>button{height:48px;padding:0 23px;border:0;border-radius:12px;background:linear-gradient(135deg,#8231df,#a144ed);color:#fff;font:inherit;font-weight:900;cursor:pointer}.vote-search>a{display:flex;align-items:center;height:48px;color:#b7c1ca;font-size:12px;font-weight:800}.vote-position-filters{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0}.vote-position-filters a{display:flex;align-items:center;gap:7px;min-height:42px;padding:0 15px;border:1px solid #344656;border-radius:999px;background:#0d1823;color:#aab5be;font-size:12px;font-weight:900}.vote-position-filters svg{width:17px}.vote-position-filters a.active{box-shadow:0 0 0 3px rgba(255,255,255,.06)}.vote-position-filters .for{color:#79d6a0}.vote-position-filters .for.active{border-color:#35a86b;background:rgba(35,139,83,.18)}.vote-position-filters .against{color:#ff9797}.vote-position-filters .against.active{border-color:#d4545a;background:rgba(184,55,62,.17)}.vote-position-filters .abstention{color:#e8c273}.vote-position-filters .abstention.active{border-color:#bd8d34;background:rgba(181,128,39,.16)}.proposal-group{box-shadow:0 18px 45px rgba(0,0,0,.16)}.proposal-group>header{align-items:flex-start;padding:25px 26px;background:radial-gradient(circle at 100% 0,rgba(139,53,238,.13),transparent 45%)}.proposal-group-title>span{display:inline-flex;padding:5px 8px;border:1px solid #69418a;border-radius:6px;background:#1e1430}.proposal-group-title>small{display:block;margin-top:13px;color:#8695a2;font-weight:800}.open-proposal{min-height:42px;padding:0 14px!important;border:1px solid #6d4490!important;border-radius:10px!important;background:#18102a;color:#dcadfa!important}.group-votings{padding:10px;background:#09141e}.vote-decision{margin:8px;overflow:hidden;border:1px solid #2c3d4c!important;border-radius:14px;background:#0f1b26}.vote-decision summary{display:grid!important;grid-template-columns:minmax(210px,1fr) minmax(170px,.7fr) auto;gap:18px;align-items:center!important;min-height:86px;padding:16px 18px!important;list-style:none}.vote-decision summary::-webkit-details-marker{display:none}.vote-decision summary:hover{background:#14222f}.vote-position{display:flex!important;align-items:center;gap:11px}.vote-position>svg{flex:0 0 auto;width:27px;height:27px}.vote-position>span{display:grid}.vote-position b{font-size:15px}.vote-position small{margin-top:3px}.vote-for{border-left:4px solid #37aa6e!important}.vote-for .vote-position{color:#73d69c}.vote-against{border-left:4px solid #db5960!important}.vote-against .vote-position{color:#ff9297}.vote-abstention{border-left:4px solid #c8963b!important}.vote-abstention .vote-position{color:#edc777}.vote-unknown{border-left:4px solid #65798b!important}.vote-decision-meta{display:grid;gap:3px;color:#d5dce2}.vote-decision-meta small{color:#81909d}.vote-expand{display:flex;align-items:center;justify-content:flex-end;gap:7px;color:#c78af1;font-size:12px}.vote-expand svg{transition:transform .2s}.vote-decision[open] .vote-expand svg{transform:rotate(180deg)}.vote-decision[open] .vote-expand b{font-size:0}.vote-decision[open] .vote-expand b::after{font-size:12px;content:"Fechar detalhes"}.vote-decision-body{padding:22px 22px 24px!important;border-top:1px solid #2b3c4b;background:#0b1721}.vote-decision-body h3{margin:0 0 7px;color:#eef2f5;font-size:15px}.vote-decision-body>p{margin:0;color:#b2bdc6;font-size:15px;line-height:1.65}.section-helper{max-width:650px;margin:8px 0 0;color:#8f9da8;font-size:13px}.voting-detail-list{display:grid;gap:24px}.voting-detail{padding:0;border-color:#304353;box-shadow:0 20px 55px rgba(0,0,0,.18)}.voting-detail>header{display:flex;align-items:center;justify-content:flex-start;gap:15px;padding:20px 22px;border-bottom:1px solid #2b3b49;background:linear-gradient(135deg,#132331,#101824)}.voting-index{display:grid;place-items:center;width:48px;height:48px;border:1px solid #68418b;border-radius:14px;background:#1c1330;color:#ce8ff6;font-size:16px;font-weight:900}.voting-detail>header h3{margin:4px 0 2px}.voting-detail>header small{color:#82919d}.voting-object{padding:23px 24px 5px}.voting-object>span{color:#a56ed0;font-size:10px;font-weight:900;letter-spacing:.8px}.voting-object>p{margin:8px 0;color:#c1c9d0;font-size:16px;line-height:1.65}.vote-totals{margin:20px 24px;padding:20px;border:1px solid #2c3e4c;border-radius:15px;background:#09151f}.vote-total-summary{display:flex;align-items:baseline;gap:8px;margin-bottom:18px}.vote-total-summary strong{color:#f2f5f7;font-size:28px}.vote-total-summary span{color:#8d9ba7;font-size:12px}.vote-total-row>span b{display:flex;align-items:center;gap:7px}.vote-total-row svg{width:17px}.vote-total-row>i{height:8px!important;overflow:hidden;background:#192735!important}.vote-total-row>i>em{display:block;height:100%;border-radius:inherit}.total-for b{color:#70d499}.total-for em{background:#39ac6e}.total-against b{color:#ff9398}.total-against em{background:#dc5960}.total-abstention b{color:#eac477}.total-abstention em{background:#c7953a}.legislative-explanation{margin-right:24px;margin-left:24px}.voting-detail>.voting-caution{display:flex;align-items:flex-start;gap:8px;margin:20px 24px;padding:13px 15px}.voting-detail>.source-link{margin:0 24px 24px}
 @media(max-width:700px){.vote-search{grid-template-columns:1fr}.vote-search>a{height:auto;justify-content:center;padding:5px}.vote-position-filters{display:grid;grid-template-columns:1fr 1fr}.vote-position-filters a{justify-content:center}.vote-decision summary{grid-template-columns:1fr auto;gap:12px;min-height:0}.vote-decision-meta{grid-column:1}.vote-expand{grid-column:2;grid-row:1/3}.vote-expand b{display:none}.proposal-group>header{padding:20px}.group-votings{padding:6px}.vote-decision{margin:7px}.vote-decision-body{padding:18px!important}.vote-totals{margin:16px;padding:16px}.legislative-explanation{margin-right:16px;margin-left:16px}.voting-detail>.voting-caution{margin-right:16px;margin-left:16px}.voting-detail>.source-link{margin-right:16px;margin-left:16px}.voting-object{padding:20px 17px 5px}}
 .vote-page-hero .article-back{display:flex;width:max-content;margin-bottom:28px}.vote-page-hero>.kicker{display:block}
+
+/* 2026 editorial light redesign */
+:root{--bg:#f5f6f7;--panel:#fff;--panel2:#eef1f3;--line:#d9dee3;--text:#17202a;--muted:#64717d;--purple:#245f8f;--purple2:#1d527d;--yellow:#b77700;--green:#238653}
+body{background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+header{background:rgba(255,255,255,.96);border-bottom:1px solid #dfe3e7;box-shadow:0 1px 0 rgba(18,34,48,.02);backdrop-filter:blur(14px)}
+.nav{height:82px;gap:34px}
+.logo{display:inline-grid;gap:1px;min-width:max-content;color:#101820;line-height:1;text-decoration:none}
+.logo .logo-word{color:#101820;font-family:"Arial Black",Arial,sans-serif;font-size:25px;font-weight:950;letter-spacing:2.4px;transform:scaleX(1.04);transform-origin:left center}
+.logo small{color:#52606c;font-size:7px;font-weight:800;letter-spacing:3.05px;white-space:nowrap}
+.nav nav{color:#4c5863}
+.nav nav a{font-size:14px;font-weight:650}
+.nav nav a:hover{color:#101820}
+.nav-news-button{border-color:#cbd3da;background:#fff;color:#24303a}
+.nav-news-button:hover{border-color:#245f8f;background:#eef5fa;color:#17496f}
+.button,.representative-filters button,.vote-filters button,.capivara-filter button,.vote-search>button{background:#183b56;color:#fff;box-shadow:none}
+.button:hover,.representative-filters button:hover,.vote-filters button:hover,.capivara-filter button:hover,.vote-search>button:hover{background:#0f2c42}
+.kicker,.section-title span,.headline-row>span,.article-next small,.profile-more small,.proposal-title>span,.proposal-group>header span,.voting-detail header span,.voting-object>span,.ai-explanation span,.legislative-explanation>span{color:#245f8f}
+.editorial-opening{background:#fff;border-bottom:1px solid #dfe4e8}
+.editorial-intro>p,.hero-copy>p,.page-hero p,.lead,.lead-copy p,.android-note p,.profile-row p,.capivara-hero p,.proposal-title p,.proposal-group header p,.voting-detail>p{color:#63717d}
+.editorial-intro h1,.page-hero h1,.detail-hero h1,.profile-row h1,.capivara-hero h1,.proposal-title h1{color:#111820}
+.front-page{gap:20px}
+.lead-story,.front-list,.news-card,.politician-card,.side-card,.prose-card,.android-note,.article-next,.stat,.representative-filters,.vote-filters,.capivara-filter,.representative-card,.mandate-grid article,.voter-card,.proposal-group,.voting-detail,.discovery-card,.discovery-politicians>article,.saved-list article,.mentioned-politician,.vote-search,.vote-decision{border-color:#d9dfe4;background:#fff;box-shadow:0 8px 30px rgba(18,38,56,.055)}
+.lead-story,.front-list,.news-card,.side-card,.prose-card,.android-note,.article-next,.proposal-group,.voting-detail{border-radius:14px}
+.lead-image,.news-image{background-color:#dfe5e9}
+.lead-copy small,.headline-row small,.news-card small,.results-count,.detail-meta,.article-back,.proposal-group-title>small,.representatives-context,.representative-card-copy small,.voter-card small,.discovery-card summary small,.discovery-politicians small,.saved-list small{color:#788590}
+.lead-copy p,.news-card p,.news-summary,.side-card p,.article-next p,.article p,.article .summary,.institution p,.institution li,.proposal-group header p,.voting-detail>p{color:#596773}
+.read-link,.section-title>a,.source-link,.profile-more a,.editorial-side a,.footer-app-link,.mandate-grid a,.proposal-title>a,.group-votings a{color:#245f8f!important}
+.front-list-title,.headline-row,.group-votings,.group-votings details+details,.discovery-news,.discovery-news a+a{border-color:#e1e5e8}
+.headline-row:hover{background:#f5f8fa}
+.headline-row:hover h3{color:#174c75}
+.tag,.party,.proposal-group-title>span{border:1px solid #cbdbe7;background:#edf4f8;color:#245f8f}
+.news-card:hover,.politician-card:hover,.representative-card:hover,.voter-card:hover,.mentioned-politician:hover,.mentioned-politician:focus-visible{border-color:#8aa9c1;background:#fff;box-shadow:0 14px 34px rgba(18,55,82,.1)}
+.trend-section{border-color:#dde3e7;background:#edf1f4}
+.rank{color:#8c5a00}
+.politician-card p,.politician-card small{color:#687681}
+.card-arrow,.mentioned-politician-arrow,.saved-list button{border-color:#d3dbe1;color:#61707c}
+.politician-card:hover .card-arrow{border-color:#87a9c2;background:#edf4f8;color:#174c75}
+.app-promo,.vote-journey{border-color:#cbd6de;background:#eaf0f4}
+.explain-card{border:1px solid #c9d9e5;background:#eaf3f8;color:#17202a;transform:none}
+.explain-card small,.explain-card h3{color:#245f8f}
+.explain-card h3{border-color:#c6d9e7}
+.explain-card p{color:#43515c}
+.searchbox,.representative-filters select,.representative-filters input,.vote-filters select,.vote-filters input,.capivara-filter select,.vote-search input{border-color:#ccd5dc;background:#fff;color:#17202a}
+.searchbox:focus-within,.vote-search input:focus{border-color:#4d7fa5;box-shadow:0 0 0 3px rgba(36,95,143,.12);outline:0}
+.filter{border-color:#ccd5dc;background:#fff;color:#52616d}
+.filter:hover{border-color:#7f9db4;color:#174c75}
+.filter:focus-visible{outline-color:rgba(36,95,143,.28)}
+.filter.active{border-color:#183b56;background:#183b56;color:#fff}
+.filter span{background:#e7ecef;color:#53616c}
+.detail-image{background-color:#e1e6e9;border-radius:16px}
+.article .summary{border-color:#245f8f}
+.article h2,.article h3,.article-content h2{color:#17202a}
+.article .explain,.capivara-explains>.explain{border-color:#c6d8e5;background:#eef5f9;box-shadow:none}
+.article .explain small,.article .explain h3,.capivara-explains>.explain h3{color:#174c75!important}
+.article .explain p,.capivara-explains>.explain p{color:#31414d!important}
+.explain-heading{border-color:#bdd0de;background:#183b56;color:#fff}
+.explain-heading small{color:#b9d5e8}
+.article .explain-heading p{color:#dbe8f0}
+.explain-list{border-color:#d1dae0;background:#f3f5f6}
+.explain-item{border-color:#d7e1e7;background:#fff;color:#17202a}
+.explain-item>span{background:#245f8f}
+.explain-item h3{color:#174c75}
+.article .explain-item p{color:#465560!important}
+.cta{border-color:#cad6df;background:#edf2f5}
+.profile-head,.capivara-hero{background:#e9eef2}
+.profile-row .avatar{border-color:#fff;box-shadow:0 0 0 2px #9aabb8}
+.stat{background:#fff}
+.institution a{color:#245f8f}
+.mini-chart{background:linear-gradient(170deg,transparent 45%,#245f8f 47% 52%,transparent 54%),linear-gradient(20deg,transparent 40%,#245f8f 42% 47%,transparent 49%)}
+footer{border-color:#d8dfe4;background:#e9edf0}
+.footer-grid>div{color:#596773}
+.footer-grid b{color:#17202a}
+.copyright{border-color:#d5dce1;color:#6d7a84}
+.footer-app-link{color:#245f8f!important}
+.mobile-nav summary{border-color:#cad3da;background:#fff;color:#26323c}
+.mobile-nav[open] summary{border-color:#7d9eb6;background:#eef5fa}
+.mobile-nav>div{border-color:#cbd4db;background:#fff;box-shadow:0 22px 55px rgba(27,42,53,.18)}
+.mobile-nav>div a{color:#3e4b56}
+.mobile-nav>div a:hover,.mobile-nav>div a:focus-visible{background:#edf3f7;color:#152a3b}
+.while-away{border-color:#cbd8e1;background:#eef3f6}
+.while-away-heading span,.while-away-list a>span,.while-away-list b,.saved-list span,.saved-list b,.representative-card-copy span,.voter-card b,.mentioned-politician-copy b,.discovery-politicians b{color:#245f8f}
+.while-away-list a{border-color:#d6dfe5;background:#fff}
+.daily-summary-card,main>.daily-summary-card{border-color:#c7d5df;background:#fff;box-shadow:0 12px 35px rgba(18,55,82,.07)}
+.daily-card-mark,main>.daily-summary-card .daily-card-mark{border-color:#b8cbd9;background:#eaf2f7;color:#245f8f;box-shadow:none}
+.daily-summary-card>div:nth-child(2)>span{color:#245f8f}
+.daily-summary-card>div:nth-child(2)>span b{background:#183b56}
+.daily-summary-card p{color:#6c7984}
+.daily-summary-card>button{background:#183b56;color:#fff;box-shadow:none}
+.daily-cover{background:radial-gradient(circle at 75% 18%,rgba(66,111,146,.32),transparent 35%),linear-gradient(155deg,#17344b 0%,#0b1723 64%,#071018 100%)}
+.daily-brand{display:grid;gap:3px;color:#fff;font-family:"Arial Black",Arial,sans-serif;font-size:24px;letter-spacing:2px}
+.daily-brand small{color:#9db8cc;font-family:Arial,sans-serif;font-size:7px;letter-spacing:2.3px}
+.daily-eyebrow{color:#a8c9df}
+.daily-image-placeholder{background:radial-gradient(circle at 50% 35%,rgba(63,117,159,.32),transparent 35%),#101d29;color:#dceaf3;font-family:"Arial Black",Arial,sans-serif;font-size:20px;letter-spacing:2px}
+.daily-news-tags span{border-color:#527a98;background:rgba(15,43,63,.92);color:#c4deef}
+.daily-news-copy>a,.daily-finish a,.daily-finish button{border-color:#386b91;background:#245f8f}
+.daily-finish{background:radial-gradient(circle at 50% 25%,rgba(57,104,140,.3),transparent 35%),linear-gradient(160deg,#153249,#071018)}
+.daily-finish button{background:transparent;color:#c4deef}
+.article-next,.profile-more{border-color:#d7dee3}
+.mentioned-politicians{border-color:#d7dfe4;background:#f1f4f6}
+.mentioned-politician-copy strong,.representative-card-copy strong,.voter-card strong{color:#17202a}
+.representative-filters label,.vote-filters label,.capivara-filter label,.vote-search label{color:#5d6b76}
+.representatives-context b,.vote-summary b{color:#245f8f}
+.mandate-grid svg{color:#245f8f}
+.vote-journey{background:#e9f0f4}
+.journey b{background:#183b56}
+.coverage-note{border-color:#6186a1;background:#edf2f5;color:#596a77}
+.vote-summary span{border-color:#d3dce2;background:#fff;color:#5d6a75}
+.proposal-group>header{background:#f5f7f8}
+.open-proposal{border-color:#a8bdcc!important;background:#fff;color:#245f8f!important}
+.group-votings{background:#f3f5f6}
+.vote-decision summary:hover{background:#f1f5f7}
+.vote-decision-meta{color:#283640}
+.vote-expand{color:#245f8f}
+.vote-decision-body{border-color:#d8dfe4;background:#f8f9fa}
+.vote-decision-body h3{color:#17202a}
+.vote-decision-body>p{color:#51606b}
+.section-helper{color:#6d7a85}
+.voting-detail>header{border-color:#d6dfe5;background:#eef2f5}
+.voting-index{border-color:#a8bfce;background:#fff;color:#245f8f}
+.voting-object>p{color:#465661}
+.vote-totals{border-color:#d5dee4;background:#f5f7f8}
+.vote-total-summary strong{color:#17202a}
+.legislative-explanation{border-color:#cbd9e2;background:#eff4f7}
+.legislative-explanation h4{color:#21303a}
+.legislative-explanation p,.legislative-explanation li{color:#52616c}
+.affected-profiles>div{background:#fff}
+.affected-profiles small{color:#637480}
+.discovery-news svg{color:#245f8f}
+.impact-profile-list article{border-color:#cbd9e2;background:#f2f5f7}
+.question-limitations{background:#edf1f4}
+.question-limitations li{color:#5c6a75}
+.saved-list button:hover{border-color:#7f9db4;background:#edf4f8;color:#174c75}
+.screen-guide{border-color:#b8c9d5;background:#fff;box-shadow:0 30px 100px rgba(20,38,51,.28)}
+.screen-guide>header{border-bottom:1px solid #d5dee4;background:#eef3f6}
+.screen-guide>header span,.guide-body small{color:#245f8f}
+.screen-guide>header button{border-color:#c3cfd8;background:#fff;color:#25333d}
+.guide-body p{color:#5e6d78}
+.screen-guide>footer{border-color:#d7dee3;background:#f4f6f7}
+.screen-guide>footer button,.replay-guide{background:#183b56}
+.screen-guide>footer .guide-skip{background:transparent;color:#596873}
+.autocomplete-menu{border-color:#cbd5dc;background:#fff;box-shadow:0 20px 50px rgba(19,39,54,.16)}
+.autocomplete-menu>a+a{border-color:#e0e5e8}
+.autocomplete-menu>a:hover{background:#eef4f7}
+.autocomplete-menu b{color:#17202a}
+.consent-banner{border-color:#c5d1d9;background:rgba(255,255,255,.98);box-shadow:0 22px 70px rgba(18,38,53,.18)}
+.consent-banner p{color:#5b6974}
+.consent-banner a{color:#245f8f}
+.consent-reject{border-color:#c3ced6;background:#fff;color:#44525d}
+.consent-accept{border-color:#183b56;background:#183b56;color:#fff}
+.app-float{border-color:#bdcbd5;background:rgba(255,255,255,.98);box-shadow:0 18px 55px rgba(18,38,53,.18)}
+.app-float-icon{border-color:#9fb8ca;background:#183b56;box-shadow:none}
+.app-float-copy>span{color:#245f8f}
+.app-float-copy strong{color:#17202a}
+.app-float-copy small{color:#65737e}
+.app-float>a{background:#183b56;color:#fff}
+.app-float>a:hover{background:#0f2c42}
+.app-float-close{border-color:#bdc9d2;background:#fff;color:#566570}
+.app-float-close:hover{color:#17202a}
+body:has(.consent-banner) .app-float{display:none}
+.institution h3,.institution strong{color:#17202a}
+.hero h1 em,.capivara-hero h1 em,.compare-hero h1 em{background:none;color:#245f8f;-webkit-text-fill-color:currentColor}
+.detail-subtitle{color:#596773}
+.daily-finish-content>svg{color:#8eb5d8}
+.news-question-float{border-color:#183b56;background:#183b56;box-shadow:0 12px 34px rgba(18,55,82,.24)}
+.news-question-float:hover{box-shadow:0 16px 38px rgba(18,55,82,.3)}
+.news-question-dialog{border-color:#c4d1da;background:#fff;box-shadow:0 30px 90px rgba(17,36,50,.26)}
+.news-question-head{border-color:#d8e0e5;background:#eef3f6}
+.news-question-head span,.result-type{color:#245f8f}
+.news-question-head p,.news-question-loading p,.news-question-error p{color:#65737e}
+.news-question-head>button{border-color:#c7d1d9;background:#fff;color:#5c6974}
+.news-question-options>button{border-color:#d4dce2;background:#fff;color:#17202a}
+.news-question-options>button:hover,.news-question-options>button:focus-visible{border-color:#86a6bd;background:#f0f5f8}
+.news-question-options>button>span{border-color:#a9c0d0;background:#e9f1f6;color:#245f8f}
+.news-question-options p{color:#66747f}
+.news-answer{color:#34434e}
+.news-question-result>small{border-color:#d9e0e5;color:#72808a}
+.people-list article{border-color:#d6dee4;background:#f5f7f8}
+.people-list h4{color:#17202a}
+.people-list p{color:#5c6974}
+.people-list article>div{border-color:#d9e0e5}
+.people-list article strong{color:#245f8f}
+.people-list article span{color:#3d4b55}
+.question-secondary,.news-question-error button{border-color:#9db7c9;background:#edf4f8;color:#174c75}
+.news-question-error>div button:first-child{border-color:#183b56;background:#183b56}
+.compare-hero{border-color:#dce2e6;background:#eef2f5}
+.compare-hero p{color:#5e6c77}
+.compare-controls,.theme-card,.methodology{border-color:#d7dfe4;background:#fff;box-shadow:0 8px 28px rgba(18,38,56,.05)}
+.compare-select label,.comparison-names small{color:#245f8f}
+.compare-select select{border-color:#cbd5dc;background:#fff;color:#17202a}
+.compare-button{background:#183b56}
+.compare-error,.compare-placeholder,.compare-empty{border-color:#c9d3da;color:#65737e}
+.compare-placeholder svg{color:#527a98}
+.compare-placeholder h2,.compare-empty h2{color:#17202a}
+.comparison-names>div,.comparison-names>div.blue{border-color:#cbd8e1;background:#eef3f6}
+.comparison-names .blue small{color:#3977a5}
+.comparison-names span,.methodology p{color:#5f6e79}
+.percentage-warning{border-color:#527a98;background:#edf3f7;color:#53636f}
+.theme-top button{border-color:#9db5c6;color:#245f8f}
+.theme-bar{background:#e1e8ed}
+.theme-bar span{background:#245f8f}
+.theme-bar.blue span{background:#5684a7}
+.theme-bar b{color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.theme-explanations{border-color:#d9e0e5}
+@media(max-width:800px){
+  .nav{height:72px}
+  .logo .logo-word{font-size:21px;letter-spacing:2px}
+  .logo small{font-size:6px;letter-spacing:2.45px}
+  .editorial-opening{padding-top:44px}
+  .capivara-explains{border-color:#cbd8e0;background:#f4f6f7}
+  .explain-heading{border-color:#bdd0de;background:#183b56}
+  .explain-list{background:#fff}
+  .explain-item{border-color:#dbe2e7;background:#fff;color:#17202a}
+  .explain-item>span{border-color:#8aaac1;background:#e5f0f6;color:#174c75}
+  .explain-item h3{color:#174c75}
+  .article .explain-item p{color:#4b5964!important}
+  .capivara-explains>.explain{background:#eef4f7;color:#17202a}
+  .profile-head{background:#e9eef2}
+  .stat{background:#fff}
+}
