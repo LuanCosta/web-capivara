@@ -244,11 +244,15 @@ footer{border-color:#d8dfe4;background:#e9edf0}
 .daily-summary-card>div:nth-child(2)>span b{background:#183b56}
 .daily-summary-card p{color:#6c7984}
 .daily-summary-card>button{background:#183b56;color:#fff;box-shadow:none}
+.daily-viewer{border-color:#3d617b}
 .daily-cover{background:radial-gradient(circle at 75% 18%,rgba(66,111,146,.32),transparent 35%),linear-gradient(155deg,#17344b 0%,#0b1723 64%,#071018 100%)}
+.daily-cover::before{border-color:rgba(142,181,216,.18)}
 .daily-brand{display:grid;gap:3px;color:#fff;font-family:"Arial Black",Arial,sans-serif;font-size:24px;letter-spacing:2px}
+.daily-brand span{color:#8eb5d8}
 .daily-brand small{color:#9db8cc;font-family:Arial,sans-serif;font-size:7px;letter-spacing:2.3px}
 .daily-eyebrow{color:#a8c9df}
 .daily-image-placeholder{background:radial-gradient(circle at 50% 35%,rgba(63,117,159,.32),transparent 35%),#101d29;color:#dceaf3;font-family:"Arial Black",Arial,sans-serif;font-size:20px;letter-spacing:2px}
+.daily-image-placeholder span{color:inherit}
 .daily-news-tags span{border-color:#527a98;background:rgba(15,43,63,.92);color:#c4deef}
 .daily-news-copy>a,.daily-finish a,.daily-finish button{border-color:#386b91;background:#245f8f}
 .daily-finish{background:radial-gradient(circle at 50% 25%,rgba(57,104,140,.3),transparent 35%),linear-gradient(160deg,#153249,#071018)}
@@ -256,6 +260,7 @@ footer{border-color:#d8dfe4;background:#e9edf0}
 .article-next,.profile-more{border-color:#d7dee3}
 .mentioned-politicians{border-color:#d7dfe4;background:#f1f4f6}
 .mentioned-politician-copy strong,.representative-card-copy strong,.voter-card strong{color:#17202a}
+.mentioned-politician:focus-visible{outline-color:rgba(36,95,143,.34)}
 .representative-filters label,.vote-filters label,.capivara-filter label,.vote-search label{color:#5d6b76}
 .representatives-context b,.vote-summary b{color:#245f8f}
 .mandate-grid svg{color:#245f8f}
@@ -272,6 +277,7 @@ footer{border-color:#d8dfe4;background:#e9edf0}
 .vote-decision-body{border-color:#d8dfe4;background:#f8f9fa}
 .vote-decision-body h3{color:#17202a}
 .vote-decision-body>p{color:#51606b}
+.group-votings summary>strong{color:#245f8f}
 .section-helper{color:#6d7a85}
 .voting-detail>header{border-color:#d6dfe5;background:#eef2f5}
 .voting-index{border-color:#a8bfce;background:#fff;color:#245f8f}
@@ -283,6 +289,7 @@ footer{border-color:#d8dfe4;background:#e9edf0}
 .legislative-explanation p,.legislative-explanation li{color:#52616c}
 .affected-profiles>div{background:#fff}
 .affected-profiles small{color:#637480}
+.affected-profiles>div{background:#eef3f6}
 .discovery-news svg{color:#245f8f}
 .impact-profile-list article{border-color:#cbd9e2;background:#f2f5f7}
 .question-limitations{background:#edf1f4}
@@ -295,6 +302,7 @@ footer{border-color:#d8dfe4;background:#e9edf0}
 .guide-body p{color:#5e6d78}
 .screen-guide>footer{border-color:#d7dee3;background:#f4f6f7}
 .screen-guide>footer button,.replay-guide{background:#183b56}
+.replay-guide:focus-visible,.screen-guide button:focus-visible{outline-color:rgba(36,95,143,.36)}
 .screen-guide>footer .guide-skip{background:transparent;color:#596873}
 .autocomplete-menu{border-color:#cbd5dc;background:#fff;box-shadow:0 20px 50px rgba(19,39,54,.16)}
 .autocomplete-menu>a+a{border-color:#e0e5e8}
@@ -330,6 +338,7 @@ body:has(.consent-banner) .app-float{display:none}
 .news-question-options>button:hover,.news-question-options>button:focus-visible{border-color:#86a6bd;background:#f0f5f8}
 .news-question-options>button>span{border-color:#a9c0d0;background:#e9f1f6;color:#245f8f}
 .news-question-options p{color:#66747f}
+.news-question-loading .ai-loader{border-color:#245f8f;border-right-color:transparent}
 .news-answer{color:#34434e}
 .news-question-result>small{border-color:#d9e0e5;color:#72808a}
 .people-list article{border-color:#d6dee4;background:#f5f7f8}
@@ -340,6 +349,7 @@ body:has(.consent-banner) .app-float{display:none}
 .people-list article span{color:#3d4b55}
 .question-secondary,.news-question-error button{border-color:#9db7c9;background:#edf4f8;color:#174c75}
 .news-question-error>div button:first-child{border-color:#183b56;background:#183b56}
+.news-question-error>svg{color:#527a98}
 .compare-hero{border-color:#dce2e6;background:#eef2f5}
 .compare-hero p{color:#5e6c77}
 .compare-controls,.theme-card,.methodology{border-color:#d7dfe4;background:#fff;box-shadow:0 8px 28px rgba(18,38,56,.05)}
@@ -359,13 +369,85 @@ body:has(.consent-banner) .app-float{display:none}
 .theme-bar.blue span{background:#5684a7}
 .theme-bar b{color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)}
 .theme-explanations{border-color:#d9e0e5}
+.hero-glow{background:radial-gradient(circle,rgba(36,95,143,.14),transparent 65%)}
+.phone-head{color:#245f8f}
+.home-compare{border-color:#c4d3de;background:#eef3f6;box-shadow:0 14px 38px rgba(18,55,82,.08)}
+.home-compare::after{background:linear-gradient(transparent,#c3d1db,transparent)}
+.home-compare-icon{border-color:#9fb8ca;background:#fff;color:#245f8f}
+.home-compare h2{color:#17202a}
+.home-compare p{color:#596773}
+.home-compare-button{background:#183b56;color:#fff;box-shadow:none}
+.home-compare-button:hover{background:#0f2c42;box-shadow:0 10px 24px rgba(18,55,82,.18)}
+.news-pagination a,.load-more{border-color:#a8bdcc;background:#fff;color:#245f8f}
+.news-pagination a:hover,.load-more:hover{border-color:#6f91aa;background:#edf4f8;color:#174c75}
+.article-section-title{border-color:#245f8f;color:#17202a}
+.article-list{color:#4f5e69}
+.article-list li::marker{color:#245f8f}
+.markdown-content{color:#4d5c67}
+.markdown-content h1,.markdown-content h2,.markdown-content h3{color:#17202a}
+.markdown-content h3{border-color:#245f8f}
+.markdown-content strong{color:#17202a}
+.markdown-content em{color:#4a5964}
+.markdown-content del{color:#798690}
+.markdown-content a{color:#245f8f}
+.markdown-content li::marker{color:#245f8f}
+.markdown-content input[type="checkbox"]{accent-color:#245f8f}
+.markdown-content blockquote{border-color:#527a98;background:#eef3f6;color:#40505b}
+.markdown-content code{border-color:#cbd5dc;background:#eef2f5;color:#174c75}
+.markdown-content pre{border-color:#cad5dd;background:#172633}
+.markdown-content pre code{color:#e5edf2}
+.markdown-content img{border-color:#d2dbe1;background:#eef2f4}
+.markdown-content thead{background:#e8eef2}
+.markdown-content th,.markdown-content td{border-color:#cbd5dc}
+.markdown-content th{color:#17202a}
+.markdown-content hr{background:#d5dde2}
+.markdown-alert-important{border-left-color:#527a98!important}
+.markdown-alert-important::before{color:#245f8f}
+.source-link{border-color:#7fa2bb}
+.capivara-explains{border-color:#cbd8e0;background:#fff;box-shadow:0 16px 44px rgba(18,55,82,.08)}
+.capivara-explains::before{background:radial-gradient(circle,rgba(36,95,143,.09),transparent 68%)}
+.explain-heading{border-color:#cbd8e0;background:#eef4f7;color:#17202a}
+.explain-heading small{border-color:#a9c0d0;background:#fff;color:#245f8f}
+.explain-heading h2{color:#17202a}
+.article .explain-heading p{color:#4c5b66}
+.feed-card-actions button:focus-visible{outline-color:rgba(36,95,143,.32)}
+.feed-card-actions button:hover:not(:disabled),.feed-card-actions button:focus-visible{border-color:#789ab2;color:#174c75}
+.feed-card-actions button.selected{border-color:#6f97b4;background:#e8f1f6;color:#174c75}
+.feed-card-actions button.selected::after{border-color:#fff;background:#245f8f}
+.feed-card-feedback button{color:#245f8f}
+.news-summary code{color:#245f8f}
+.mentioned-politicians-heading span{color:#245f8f}
+.ai-explanation{border:1px solid #cbd9e2;background:#eff4f7;color:#31414d}
+.ai-explanation p{color:#465661}
+.voting-caution{border-color:#b78a39;background:#fff8e8;color:#5d5140}
+.vote-position-filters a{border-color:#cbd5dc;background:#fff;color:#52616d}
+.vote-total-row>i{background:#dfe6ea!important}
+.proposal-panel{border-color:#cbd8e1;background:#fff;box-shadow:0 14px 38px rgba(18,55,82,.07)}
+.proposal-heading{border-color:#d7e0e6;background:#eef3f6}
+.proposal-heading>span{color:#245f8f}
+.proposal-heading h2{color:#17202a}
+.proposal-heading p{color:#5c6a75}
+.question-grid button{border-color:#d2dce3;background:#fff;color:#53616c}
+.question-grid button:hover,.question-grid button.active{border-color:#7f9fb6;background:#eef4f7;color:#17202a}
+.question-grid button small{color:#245f8f}
+.question-grid button strong{color:#17202a}
+.ask-button,.proposal-state button,.proposal-answer button,.compare-error button{background:#183b56}
+.proposal-state{color:#5c6a75}
+.proposal-answer,.proposal-answer.blue{border-color:#c8d8e3;background:#eef4f7}
+.proposal-answer>p{color:#31414d}
+.proposal-sources{border-color:#d0d9df}
+.proposal-sources strong,.ai-disclaimer{color:#6c7984}
+.proposal-sources a,.proposal-sources span{border-color:#bdcdd8;background:#fff;color:#245f8f}
 @media(max-width:800px){
   .nav{height:72px}
   .logo .logo-word{font-size:21px;letter-spacing:2px}
   .logo small{font-size:6px;letter-spacing:2.45px}
   .editorial-opening{padding-top:44px}
   .capivara-explains{border-color:#cbd8e0;background:#f4f6f7}
-  .explain-heading{border-color:#bdd0de;background:#183b56}
+  .explain-heading{border-color:#cbd8e0;background:#eef4f7;color:#17202a}
+  .explain-heading small{color:#245f8f}
+  .explain-heading h2{color:#17202a}
+  .article .explain-heading p{color:#4c5b66}
   .explain-list{background:#fff}
   .explain-item{border-color:#dbe2e7;background:#fff;color:#17202a}
   .explain-item>span{border-color:#8aaac1;background:#e5f0f6;color:#174c75}
