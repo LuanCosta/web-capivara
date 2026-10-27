@@ -254,6 +254,9 @@ footer{border-color:#d8dfe4;background:#e9edf0}
 .daily-image-placeholder{background:radial-gradient(circle at 50% 35%,rgba(63,117,159,.32),transparent 35%),#101d29;color:#dceaf3;font-family:"Arial Black",Arial,sans-serif;font-size:20px;letter-spacing:2px}
 .daily-image-placeholder span{color:inherit}
 .daily-news-tags span{border-color:#527a98;background:rgba(15,43,63,.92);color:#c4deef}
+.daily-cover h2,.daily-news h2,.daily-finish h2{color:#fff}
+.daily-news-copy>p{color:#c4cfd7}
+.daily-news-copy>small{color:#91a2af}
 .daily-news-copy>a,.daily-finish a,.daily-finish button{border-color:#386b91;background:#245f8f}
 .daily-finish{background:radial-gradient(circle at 50% 25%,rgba(57,104,140,.3),transparent 35%),linear-gradient(160deg,#153249,#071018)}
 .daily-finish button{background:transparent;color:#c4deef}
