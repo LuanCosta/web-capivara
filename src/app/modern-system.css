@@ -55,6 +55,10 @@ main header,.screen-guide>header{position:static;top:auto;z-index:auto;backdrop-
 .site-header .nav{height:76px;gap:30px}
 .site-header .logo{transition:opacity .18s ease}
 .site-header .logo:hover{opacity:.72}
+.logo{gap:3px}
+.logo-mark{display:block;width:214px;height:auto;color:#101820;overflow:visible}
+.logo-accent{fill:#f4b400}
+.logo small{text-align:center;font-size:6.5px;letter-spacing:4.3px}
 .site-nav{display:flex;align-items:center;gap:5px;margin-left:auto}
 .site-nav a{
   position:relative;
@@ -136,15 +140,24 @@ main>.daily-summary-card+.editorial-opening{padding-top:48px}
   content:"CAPIVARA";
 }
 .list .news-card-link{grid-template-columns:230px minmax(0,1fr)}
-.list .news-image{height:100%;min-height:205px;aspect-ratio:4/3}
+.list .news-image{width:100%;min-width:0;height:100%;min-height:205px;aspect-ratio:auto}
 .list .feed-card-footer{margin-left:230px}
-.news-body{padding:19px 20px}
+.news-body{min-width:0;padding:19px 20px}
 .news-card h3{color:#1c2831;font-weight:560}
 .news-summary{color:#596873;line-height:1.55}
 .feed-card-actions{border-color:#dce3e7}
 .feed-card-actions button{border-color:#cdd8df;background:#fff;color:#536572}
 .feed-card-actions button:hover:not(:disabled),.feed-card-actions button:focus-visible{border-color:#779bb5;background:#edf4f8;color:#173e59}
 .feed-card-actions button.selected{border-color:#4f7fa1;background:#e7f1f7;color:#173e59}
+
+/* Related profiles use an editorial portrait crop instead of a cramped circular avatar. */
+.mentioned-politicians{margin-top:36px;padding:26px;border-color:var(--line);border-radius:var(--radius-lg);background:#eef3f6}
+.mentioned-politicians-list{grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+.mentioned-politician{grid-template-columns:72px minmax(0,1fr) 36px;gap:14px;min-height:98px;padding:12px 14px 12px 12px;border-radius:var(--radius-md)}
+.mentioned-politician-avatar{width:72px;height:72px;overflow:hidden;border:1px solid #d2dde4;border-radius:14px;background:#e3ebf0;color:#245f8f}
+.mentioned-politician-avatar img{display:block;width:100%;height:100%;border-radius:inherit;object-fit:cover;object-position:center 18%}
+.mentioned-politician-copy strong{font-size:16px}
+.mentioned-politician-copy small{display:-webkit-box;overflow:hidden;line-height:1.35;text-overflow:clip;white-space:normal;-webkit-box-orient:vertical;-webkit-line-clamp:2}
 
 /* Article reading experience */
 .detail-hero{padding:48px 0 0}
@@ -178,7 +191,7 @@ main>.daily-summary-card+.editorial-opening{padding-top:48px}
 /* Footer anchors short pages and gives the brand a visual finish. */
 body>footer{margin-top:auto;border-color:#203b4e;background:#102838;color:#c7d3da}
 footer .footer-grid>div{color:#aebdc6}
-footer .logo .logo-word,footer .footer-grid b{color:#fff}
+footer .logo-mark,footer .footer-grid b{color:#fff}
 footer .logo small{color:#a8bdc9}
 footer .footer-app-link{color:#b7d4e7!important}
 footer a{transition:color .18s ease}
@@ -222,6 +235,9 @@ body:has(.guide-overlay) .news-question-float{visibility:hidden;pointer-events:n
   .list .news-card-link{grid-template-columns:1fr}
   .list .news-image{height:auto;min-height:0;aspect-ratio:16/9}
   .list .feed-card-footer{margin-left:0}
+  .mentioned-politicians{padding:20px 0 18px}
+  .mentioned-politician{grid-template-columns:64px minmax(0,1fr) 34px;min-height:90px}
+  .mentioned-politician-avatar{width:64px;height:64px;border-radius:12px}
   .detail-hero{padding-top:32px}
   .detail-hero h1{font-size:clamp(34px,9.4vw,40px);line-height:1.07;letter-spacing:-1.7px}
   .detail-subtitle{font-size:17px}
@@ -239,8 +255,8 @@ body:has(.guide-overlay) .news-question-float{visibility:hidden;pointer-events:n
 }
 
 @media(max-width:500px){
-  .site-header .logo .logo-word{font-size:20px}
-  .site-header .logo small{font-size:5.5px}
+  .site-header .logo-mark{width:170px}
+  .site-header .logo small{font-size:5.2px;letter-spacing:3.25px}
   .daily-summary-card>div:nth-child(2)>span{font-size:9px}
   .latest-grid{gap:14px}
   .news-body{padding:17px}
