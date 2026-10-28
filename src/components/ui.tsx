@@ -6,7 +6,19 @@ import { formatPoliticianRole } from "@/lib/politician";
 import { SiteNavigation } from "./site-navigation";
 export { NewsCard } from "./news-card";
 
-export function Logo(){return <Link className="logo" href="/" aria-label="Capivara — Política e informação"><svg className="logo-mark" viewBox="0 0 272 42" role="presentation" aria-hidden="true"><path fill="currentColor" d="M30 0H13C4 0 0 7 0 21s4 21 13 21h17v-9H15c-5 0-7-3-7-12S10 9 15 9h15V0Z"/><path fill="currentColor" fillRule="evenodd" d="M36 42 50 0l16 42h-9l-3-9h-9l-3 9h-6Zm12-17h4l-2-7-2 7Z"/><path fill="currentColor" fillRule="evenodd" d="M72 0h17c10 0 15 5 15 14s-5 14-15 14h-8v14h-9V0Zm9 8v12h8c4 0 6-2 6-6s-2-6-6-6h-8Z"/><path fill="currentColor" d="M111 0h9v42h-9zM126 0h10l9 29 9-29h10l-15 42h-8L126 0Z"/><path fill="currentColor" d="m166 42 14-42 5 13-9 29h-10Z"/><path className="logo-accent" d="m180 0 16 42h-10l-10-29L180 0Z"/><path fill="currentColor" d="M174 27h14v7h-14z"/><path fill="currentColor" fillRule="evenodd" d="M202 0h17c10 0 15 5 15 14 0 7-3 11-8 13l12 15h-11l-10-13h-6v13h-9V0Zm9 8v13h8c4 0 6-2 6-7 0-4-2-6-6-6h-8Z"/><path fill="currentColor" fillRule="evenodd" d="m242 42 14-42 16 42h-9l-3-9h-9l-3 9h-6Zm12-17h4l-2-7-2 7Z"/></svg><small>POLÍTICA E INFORMAÇÃO</small></Link>}
+export function Logo(){return <Link className="logo" href="/" aria-label="Capivara — Política e informação">
+  <svg className="logo-mark" viewBox="0 0 335 58" role="presentation" aria-hidden="true">
+    <path fill="currentColor" d="M53 11C47 4 40 1 30 1 12 1 1 12 1 29s11 28 29 28c10 0 18-3 24-10l-9-8c-4 4-8 6-14 6-10 0-17-6-17-16s7-16 17-16c6 0 11 2 14 6l8-8Z"/>
+    <path fill="currentColor" d="M54 57 77 2h8l24 55H96L81 20 67 57H54Z"/>
+    <path fill="currentColor" fillRule="evenodd" d="M108 2h23c14 0 22 7 22 19s-8 19-22 19h-10v17h-13V2Zm13 11v16h10c6 0 9-3 9-8s-3-8-9-8h-10Z"/>
+    <path fill="currentColor" d="M158 2h13v55h-13V2Zm17 0h14l14 38 14-38h14l-22 55h-12L175 2Z"/>
+    <path fill="currentColor" d="m210 57 23-55h8l-23 55h-8Z"/>
+    <path className="logo-accent" d="m235 13 20 44h-14l-13-29 7-15Z"/>
+    <path fill="currentColor" fillRule="evenodd" d="M251 2h23c14 0 22 7 22 19 0 9-5 15-13 18l17 18h-16l-14-16h-6v16h-13V2Zm13 11v17h10c6 0 9-3 9-9 0-5-3-8-9-8h-10Z"/>
+    <path fill="currentColor" d="m286 57 23-55h8l24 55h-13l-15-37-14 37h-13Z"/>
+  </svg>
+  <small>POLÍTICA E INFORMAÇÃO</small>
+</Link>}
 export function Header(){return <header className="site-header"><div className="nav wrap"><Logo/><SiteNavigation/></div></header>}
 const playStoreUrl=getPlayStoreUrl(process.env.NEXT_PUBLIC_PLAY_STORE_URL);
 export function Footer(){return <footer><div className="wrap footer-grid"><div><Logo/><p>Política explicada sem complicação.</p><a className="footer-app-link" href={playStoreUrl} target="_blank" rel="noopener noreferrer">Também disponível para Android <ArrowRight size={14}/></a></div><div><b>Conteúdo</b><Link href="/noticias">Notícias</Link><Link href="/politicos">Políticos</Link><Link href="/capivara">Capivara · Como votou</Link><Link href="/em-alta">Em alta</Link></div><div><b>Transparência</b><Link href="/politica-editorial">Política editorial</Link><Link href="/uso-de-ia">Uso de IA</Link><Link href="/politica-de-privacidade">Privacidade</Link><Link href="/contato">Contato</Link></div></div><div className="wrap copyright">© 2026 Capivara. Informação para entender, não para confundir.</div></footer>}

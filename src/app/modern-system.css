@@ -56,8 +56,8 @@ main header,.screen-guide>header{position:static;top:auto;z-index:auto;backdrop-
 .site-header .logo{transition:opacity .18s ease}
 .site-header .logo:hover{opacity:.72}
 .logo{gap:3px}
-.logo-mark{display:block;width:214px;height:auto;color:#101820;overflow:visible}
-.logo-accent{fill:#f4b400}
+.logo-mark{display:block;width:226px;height:auto;color:#101820;overflow:visible}
+.logo-accent{fill:#ffc400}
 .logo small{text-align:center;font-size:6.5px;letter-spacing:4.3px}
 .site-nav{display:flex;align-items:center;gap:5px;margin-left:auto}
 .site-nav a{
@@ -255,7 +255,7 @@ body:has(.guide-overlay) .news-question-float{visibility:hidden;pointer-events:n
 }
 
 @media(max-width:500px){
-  .site-header .logo-mark{width:170px}
+  .site-header .logo-mark{width:180px}
   .site-header .logo small{font-size:5.2px;letter-spacing:3.25px}
   .daily-summary-card>div:nth-child(2)>span{font-size:9px}
   .latest-grid{gap:14px}
