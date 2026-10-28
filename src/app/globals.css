@@ -424,6 +424,15 @@ body:has(.consent-banner) .app-float{display:none}
 .ai-explanation p{color:#465661}
 .voting-caution{border-color:#b78a39;background:#fff8e8;color:#5d5140}
 .vote-position-filters a{border-color:#cbd5dc;background:#fff;color:#52616d}
+.vote-position-filters .for{color:#176b46}.vote-position-filters .for.active{border-color:#3b9a70;background:#e8f6ef}
+.vote-position-filters .against{color:#a92d36}.vote-position-filters .against.active{border-color:#cc6269;background:#fff0f1}
+.vote-position-filters .abstention{color:#826019}.vote-position-filters .abstention.active{border-color:#c39a48;background:#fff7e5}
+.vote-position{color:#687783}
+.vote-position small{color:#687783}
+.vote-for .vote-position>svg,.vote-for .vote-position b{color:#18764d}
+.vote-against .vote-position>svg,.vote-against .vote-position b{color:#b42c36}
+.vote-abstention .vote-position>svg,.vote-abstention .vote-position b{color:#8b6518}
+.vote-for{border-left-color:#2f9968!important}.vote-against{border-left-color:#c94d56!important}.vote-abstention{border-left-color:#b9892e!important}
 .vote-total-row>i{background:#dfe6ea!important}
 .proposal-panel{border-color:#cbd8e1;background:#fff;box-shadow:0 14px 38px rgba(18,55,82,.07)}
 .proposal-heading{border-color:#d7e0e6;background:#eef3f6}

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft,ArrowRight,CheckCircle2,ChevronDown,ExternalLink,MinusCircle,Search,XCircle } from "lucide-react";
 import { PageShell } from "@/components/ui";
-import { formatIsoDate,getGroupedVotes } from "@/lib/representatives";
+import { decisionTypeLabel,formatIsoDate,getGroupedVotes } from "@/lib/representatives";
 
 type Params={search?:string;position?:string;offset?:string};
 const positionLabel=(position?:string)=>({FOR:"A favor",AGAINST:"Contra",ABSTENTION:"Abstenção"}[position||""]||"Posição não informada");
@@ -25,7 +25,7 @@ export default async function Votacoes({params,searchParams}:{params:Promise<{id
       {page.items.length?<div className="proposal-groups">{page.items.map(group=><article className="proposal-group" key={`${group.house}-${group.proposalId}`}>
         <header><div className="proposal-group-title"><span>{group.house}</span><h2>{group.identification}</h2><p>{group.description}</p><small>{group.voteCount} {group.voteCount===1?"decisão registrada":"decisões registradas"}</small></div><Link className="open-proposal" href={`/propostas/${group.house}/${group.proposalId}`}>Ver proposta completa <ArrowRight size={16}/></Link></header>
         <div className="group-votings">{group.votings.map(vote=><details className={`vote-decision vote-${positionClass(vote.position)}`} key={`${vote.house}-${vote.votingId}`}>
-          <summary><span className="vote-position"><PositionIcon position={vote.position}/><span><b>{positionLabel(vote.position)}</b><small>Voto registrado: {vote.originalVote||"não informado"}</small></span></span><span className="vote-decision-meta"><b>{formatIsoDate(vote.votedOn)}</b><small>{vote.decisionType||"Tipo de decisão não informado"}</small></span><span className="vote-expand"><b>Ver detalhes</b><ChevronDown size={19}/></span></summary>
+          <summary><span className="vote-position"><PositionIcon position={vote.position}/><span><b>{positionLabel(vote.position)}</b><small>Voto registrado: {vote.originalVote||"não informado"}</small></span></span><span className="vote-decision-meta"><b>{formatIsoDate(vote.votedOn)}</b><small>{decisionTypeLabel(vote.decisionType)}</small></span><span className="vote-expand"><b>Ver detalhes</b><ChevronDown size={19}/></span></summary>
           <div className="vote-decision-body"><h3>O que foi decidido</h3><p>{vote.votingDescription}</p>{vote.explanation?.votingExplanation&&<div className="ai-explanation"><span>CAPIVARA EXPLICA · EXPLICAÇÃO POR IA</span><p>{vote.explanation.votingExplanation}</p></div>}{vote.source?.publicUrl&&<a href={vote.source.publicUrl} target="_blank" rel="noopener noreferrer">Consultar fonte oficial <ExternalLink size={14}/></a>}</div>
         </details>)}</div>
       </article>)}</div>:<div className="empty-state"><h2>Nenhuma proposta encontrada neste recorte</h2><p>Altere a pesquisa ou os filtros. A lista vazia não comprova ausência de atuação.</p></div>}

@@ -4,6 +4,7 @@ import { GoogleAnalytics } from "@/components/google-analytics";
 import { getPlayStoreUrl } from "@/lib/play-store";
 import { ScreenGuide } from "@/components/screen-guide";
 import "./globals.css";
+import "./modern-system.css";
 const adsenseClient=process.env.NEXT_PUBLIC_ADSENSE_CLIENT||"ca-pub-3105097944280355";
 const googleConsentDefaults=`
 window.dataLayer=window.dataLayer||[];

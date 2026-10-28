@@ -4,7 +4,7 @@ import { ArrowUpRight, Smartphone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const DISMISSED_KEY = "capivara-app-promo-dismissed-at";
-const HIDE_FOR_MS = 60 * 60 * 1000;
+const HIDE_FOR_MS = 7 * 24 * 60 * 60 * 1000;
 
 export function AppPromoBanner({ playStoreUrl }: { playStoreUrl: string }) {
   const [visible, setVisible] = useState(false);
@@ -14,7 +14,7 @@ export function AppPromoBanner({ playStoreUrl }: { playStoreUrl: string }) {
     const hiddenUntil = dismissedAt + HIDE_FOR_MS;
     if (dismissedAt && Date.now() < hiddenUntil) return;
 
-    const timer = window.setTimeout(() => setVisible(true), 3500);
+    const timer = window.setTimeout(() => setVisible(true), 12000);
     return () => window.clearTimeout(timer);
   }, []);
 

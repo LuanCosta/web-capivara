@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft,CheckCircle2,ExternalLink,Info,MinusCircle,XCircle } from "lucide-react";
 import { PageShell } from "@/components/ui";
-import { formatIsoDate,getProposalDetail,type VoteTotals } from "@/lib/representatives";
+import { decisionTypeLabel,formatIsoDate,getProposalDetail,type VoteTotals } from "@/lib/representatives";
 
 const value=(number:number|null|undefined)=>number==null?"Indisponível":new Intl.NumberFormat("pt-BR").format(number);
 function Totals({totals}:{totals?:VoteTotals}){
@@ -18,7 +18,7 @@ export default async function Proposta({params}:{params:Promise<{house:string;id
     <div className="proposal-title"><span>{house}</span><h1>{proposal.identification}</h1><p>{proposal.description}</p><small>Apresentada em {formatIsoDate(proposal.presentedOn)}</small>{proposal.source?.publicUrl&&<a href={proposal.source.publicUrl} target="_blank" rel="noopener noreferrer">Fonte oficial <ExternalLink size={14}/></a>}</div>
     <section><div className="section-title"><div><span>DECISÕES REGISTRADAS</span><h2>Votações desta proposta</h2><p className="section-helper">Cada card abaixo representa uma decisão diferente. Os placares não são somados entre etapas.</p></div></div>
       <div className="voting-detail-list">{proposal.votings.map((voting,index)=><article className="voting-detail" id={`votacao-${voting.id}`} key={voting.id}>
-        <header><div className="voting-index">{String(index+1).padStart(2,"0")}</div><div><span>{voting.decisionType||"Decisão"}</span><h3>{formatIsoDate(voting.votedOn)}</h3><small>ID oficial: {voting.id}</small></div></header>
+        <header><div className="voting-index">{String(index+1).padStart(2,"0")}</div><div><span>{decisionTypeLabel(voting.decisionType)}</span><h3>{formatIsoDate(voting.votedOn)}</h3><small>ID oficial: {voting.id}</small></div></header>
         <section className="voting-object"><span>O QUE FOI DECIDIDO</span><p>{voting.description}</p></section>
         <Totals totals={voting.voteTotals}/>
         {voting.explanation&&<div className="legislative-explanation"><span>CAPIVARA EXPLICA · EXPLICAÇÃO POR IA</span>{voting.explanation.proposalExplanation&&<section><h4>Sobre a proposta</h4><p>{voting.explanation.proposalExplanation}</p></section>}{voting.explanation.votingExplanation&&<section><h4>O que foi votado</h4><p>{voting.explanation.votingExplanation}</p></section>}{voting.explanation.resultExplanation&&<section><h4>Resultado da votação</h4><p>{voting.explanation.resultExplanation}</p></section>}{Boolean(voting.explanation.affectedProfiles?.length)&&<section><h4>Quem pode ser afetado</h4><div className="affected-profiles">{voting.explanation.affectedProfiles!.slice(0,3).map(profile=><div key={profile.profile}><b>{profile.profile}</b><p>{profile.possibleImpact}</p>{profile.conditions&&<small>Condições: {profile.conditions}</small>}</div>)}</div></section>}{Boolean(voting.explanation.limitations?.length)&&<section><h4>Limitações da informação</h4><ul>{voting.explanation.limitations!.map(item=><li key={item}>{item}</li>)}</ul></section>}</div>}

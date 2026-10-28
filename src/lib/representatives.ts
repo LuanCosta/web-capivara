@@ -28,4 +28,12 @@ export async function getGroupedVotes(id:string,params:{position?:string;search?
 export const getProposalDetail=(house:string,id:string,votesOffset=0)=>getJson<ProposalDetail>(`/legislative/votings/${encodeURIComponent(house)}/${encodeURIComponent(id)}?substantiveOnly=true&limit=50&votesOffset=${votesOffset}`);
 
 export const officeName=(key?:string)=>({PRESIDENT:"Presidência",GOVERNOR:"Governador",SENATOR:"Senador",FEDERAL_DEPUTY:"Deputado federal",STATE_DEPUTY:"Deputado estadual",DISTRICT_DEPUTY:"Deputado distrital"}[key??""]??key??"Cargo não informado");
+export const decisionTypeLabel=(type?:string)=>({
+  MAIN_TEXT:"Texto principal",
+  AMENDMENT:"Emenda",
+  SUBSTITUTE:"Substitutivo",
+  PROCEDURAL:"Questão de procedimento",
+  MOTION:"Requerimento",
+  VETO:"Veto",
+}[type??""]??"Tipo de decisão não informado");
 export const formatIsoDate=(value?:string)=>{if(!value)return"Data não informada";const date=new Date(`${value}T12:00:00`);return Number.isNaN(date.valueOf())?value:new Intl.DateTimeFormat("pt-BR").format(date)};
