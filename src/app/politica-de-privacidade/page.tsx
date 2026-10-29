@@ -4,7 +4,7 @@ export const metadata={title:"Política de privacidade",description:"Política d
 
 const contactEmail=process.env.NEXT_PUBLIC_CONTACT_EMAIL||"contato.capivaranews@gmail.com";
 
-export default function Privacidade(){return <Institution eyebrow="ÚLTIMA ATUALIZAÇÃO: 23 DE OUTUBRO DE 2026" title="Política de privacidade" intro="Esta política explica como o Capivara trata informações no site e no aplicativo Android Capivara 2.0. As práticas de cada plataforma estão identificadas separadamente.">
+export default function Privacidade(){return <Institution eyebrow="ÚLTIMA ATUALIZAÇÃO: 28 DE OUTUBRO DE 2026" title="Política de privacidade" intro="Esta política explica como o Capivara trata informações no site e no aplicativo Android Capivara 2.0. As práticas de cada plataforma estão identificadas separadamente.">
   <h2>1. Uso sem cadastro</h2>
   <p>O uso normal do site e do aplicativo Android não exige a criação de uma conta nem o fornecimento de nome, e-mail, telefone ou senha. Isso não significa ausência de tratamento de informações: dados técnicos podem ser processados para entregar o conteúdo, manter a segurança, medir o uso, diagnosticar falhas, exibir publicidade e operar as funcionalidades descritas abaixo.</p>
 
@@ -19,6 +19,11 @@ export default function Privacidade(){return <Institution eyebrow="ÚLTIMA ATUAL
   <p>Além da escolha de medição e publicidade, o site pode armazenar localmente a data em que o banner de divulgação do aplicativo foi fechado, a identificação do resumo diário já visualizado e, quando o usuário utiliza reações, um token técnico de sessão e sua validade.</p>
   <p>Likes e dislikes utilizam esse token técnico para controlar a reação atual e reduzir duplicidades, sem exigir cadastro. Esse mecanismo não representa anonimato absoluto, pois os serviços envolvidos também podem processar endereço IP e outros dados técnicos da conexão.</p>
   <p>A versão web permite salvar notícias localmente no navegador e registra localmente a referência da última visita usada na seção “Enquanto você esteve fora”, além do estado das dicas de apresentação. Esses dados podem ser removidos pela própria interface, quando houver essa opção, ou limpando o armazenamento do domínio.</p>
+
+  <h3>2.3 Meu Voto e alertas web</h3>
+  <p>A área “Meu Voto” permite montar, sem cadastro, uma ficha pessoal de acompanhamento. A UF, os cargos e as cópias de apresentação das pessoas escolhidas ficam no armazenamento local deste navegador. Essa ficha não registra voto oficial, intenção de voto pública nem apoio declarado.</p>
+  <p>Para carregar notícias, votações e presença no noticiário relacionadas ao grupo, o site envia ao backend somente os identificadores necessários das pessoas escolhidas. A composição da ficha, os nomes, os cargos associados e o texto pesquisado nessa área não são enviados pelo Capivara para Analytics, publicidade ou ferramentas de gravação de sessão.</p>
+  <p>Alertas web só são solicitados depois de uma ação explícita no sino e dependem de configuração específica do navegador e do servidor. Quando disponíveis e ativados, o serviço associa a inscrição técnica de Push somente aos identificadores das pessoas acompanhadas, para enviar alertas de novas notícias. A UF e o cargo da ficha não são necessários para esse disparo. O usuário pode desligar o sino e revogar a permissão nas configurações do navegador.</p>
 
   <h2>3. Analytics e diagnóstico no Android</h2>
   <p>O aplicativo Android utiliza o Google Analytics para Firebase para produzir métricas de navegação, utilização das funcionalidades e interações. Também utiliza o Firebase Crashlytics para diagnosticar falhas e acompanhar a estabilidade do aplicativo.</p>

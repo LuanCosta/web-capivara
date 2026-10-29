@@ -11,7 +11,7 @@ const toDate=(value?:string)=>{
 
 export default async function sitemap():Promise<MetadataRoute.Sitemap>{
   const base=(process.env.NEXT_PUBLIC_SITE_URL||"https://usecapivara.com.br").replace(/\/$/,"");
-  const routes=["","/noticias","/politicos","/capivara","/em-alta","/salvos","/sobre","/politica-editorial","/uso-de-ia","/politica-de-privacidade","/contato"];
+  const routes=["","/noticias","/politicos","/meu-voto","/capivara","/em-alta","/salvos","/sobre","/politica-editorial","/uso-de-ia","/politica-de-privacidade","/contato"];
   const news=await getAllNewsForSitemap();
   return [
     ...routes.map(route=>({url:`${base}${route}`,changeFrequency:"daily" as const})),

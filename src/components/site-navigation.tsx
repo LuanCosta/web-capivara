@@ -13,6 +13,7 @@ const primaryLinks = [
 
 const mobileLinks = [
   ...primaryLinks.slice(0, 2),
+  { href: "/meu-voto", label: "Meu Voto" },
   { href: "/capivara", label: "Capivara · Como votou" },
   ...primaryLinks.slice(2),
   { href: "/sobre", label: "Ajuda e transparência" },
@@ -34,7 +35,7 @@ export function SiteNavigation() {
         return <Link className={current ? "active" : undefined} aria-current={current ? "page" : undefined} href={item.href} key={item.href}>{item.label}</Link>;
       })}
     </nav>
-    <Link className={`nav-news-button ${isCurrent(pathname, "/capivara") ? "active" : ""}`} aria-current={isCurrent(pathname, "/capivara") ? "page" : undefined} href="/capivara">Como votou <ArrowRight size={15}/></Link>
+    <Link className={`nav-news-button ${isCurrent(pathname, "/meu-voto") ? "active" : ""}`} aria-current={isCurrent(pathname, "/meu-voto") ? "page" : undefined} href="/meu-voto">Meu Voto <ArrowRight size={15}/></Link>
     <details className="mobile-nav">
       <summary aria-label="Abrir menu"><Menu size={22}/><span>Menu</span></summary>
       <div>
