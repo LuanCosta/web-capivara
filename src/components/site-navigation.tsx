@@ -5,6 +5,7 @@ import { ArrowRight, Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const primaryLinks = [
+  { href: "/", label: "Início" },
   { href: "/noticias", label: "Notícias" },
   { href: "/politicos", label: "Políticos" },
   { href: "/em-alta", label: "Em alta" },
@@ -12,10 +13,10 @@ const primaryLinks = [
 ];
 
 const mobileLinks = [
-  ...primaryLinks.slice(0, 2),
+  ...primaryLinks.slice(0, 3),
   { href: "/meu-voto", label: "Meu Voto" },
   { href: "/capivara", label: "Capivara · Como votou" },
-  ...primaryLinks.slice(2),
+  ...primaryLinks.slice(3),
   { href: "/sobre", label: "Ajuda e transparência" },
   { href: "/contato", label: "Contato" },
 ];

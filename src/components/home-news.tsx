@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Landmark, Sparkles } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowRight, Clock, Landmark, Sparkles } from "lucide-react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import type { News, NewsPage } from "@/lib/data";
 import { NewsCard, SectionTitle } from "@/components/ui";
 
-export function HomeNews({initialNews}:{initialNews:News[]}){
+export function HomeNews({initialNews,summary}:{initialNews:News[];summary:ReactNode}){
   const [news,setNews]=useState(initialNews);
 
   useEffect(()=>{
@@ -19,12 +19,25 @@ export function HomeNews({initialNews}:{initialNews:News[]}){
   },[]);
 
   const main=news[0];
+  const radar=useMemo(()=>{
+    const groups=new Map<string,{count:number;item:News}>();
+    for(const item of news){const current=groups.get(item.category);groups.set(item.category,{count:(current?.count??0)+1,item:current?.item??item})}
+    return [...groups.entries()].sort((a,b)=>b[1].count-a[1].count).slice(0,5);
+  },[news]);
   return <>
-    <section className="editorial-opening"><div className="wrap">
-      <div className="editorial-intro"><div><span className="kicker"><Sparkles size={15}/> POLÍTICA EXPLICADA</span><h1>Notícias para entender<br/>o Brasil de agora.</h1></div><p>Informação organizada, contexto e explicações claras para você acompanhar a política sem depender de aplicativo.</p></div>
-      {main&&<div className="front-page"><Link className="lead-story" href={`/noticias/${main.id}`}><div className={`lead-image ${main.image?"has-image":"is-placeholder"}`} style={main.image?{backgroundImage:`linear-gradient(0deg,rgba(4,10,16,.76),transparent 68%),url(${JSON.stringify(main.image)})`}:undefined}><span className="tag">{main.category}</span></div><div className="lead-copy"><small>{main.source} · {main.date}</small><h2>{main.title}</h2><p>{main.summary}</p><span className="read-link">Ler notícia completa <ArrowRight size={17}/></span></div></Link><div className="front-list"><div className="front-list-title">Últimas notícias <span>Atualizado agora</span></div>{news.slice(1,4).map(item=><Link href={`/noticias/${item.id}`} className="headline-row" key={item.id}><span>{item.category}</span><h3>{item.title}</h3><small>{item.source} · {item.date}</small></Link>)}</div></div>}
+    <section className="home-editorial-hero"><div className="wrap home-editorial-hero-grid">
+      <div className="home-editorial-copy"><span className="kicker"><Sparkles size={15}/> POLÍTICA, COM CONTEXTO</span><h1>Entenda o Brasil.<br/>Forme sua opinião.</h1><p>Notícias, pessoas e decisões públicas organizadas com contexto para você acompanhar a política com menos ruído.</p><Link href="/noticias">Acompanhar as notícias <ArrowRight size={18}/></Link></div>
+      {main&&<Link aria-label={`Abrir notícia em destaque: ${main.title}`} className={`home-editorial-photo ${main.image?"has-image":"is-placeholder"}`} href={`/noticias/${main.id}`} style={main.image?{backgroundImage:`url(${JSON.stringify(main.image)})`}:undefined}><span>NOTÍCIA EM DESTAQUE</span><small>{main.source} · {main.date}</small></Link>}
     </div></section>
-    <section className="wrap home-compare"><div className="home-compare-icon"><Landmark size={27}/></div><div><span className="kicker">CAPIVARA · VOTAÇÕES</span><h2>Veja como cada político votou</h2><p>Escolha um político, pesquise uma proposta e confira as decisões registradas nas fontes oficiais.</p></div><Link className="home-compare-button" href="/capivara">Explorar votações <ArrowRight size={18}/></Link></section>
+    {summary}
+    {main&&<section className="wrap home-news-desk">
+      <header><span className="kicker">AGORA NO CAPIVARA</span><h2>Informação para acompanhar o dia.</h2></header>
+      <div className="home-news-desk-grid">
+        <section className="home-desk-latest"><div className="home-desk-title">Últimas notícias</div>{news.slice(1,5).map(item=><Link href={`/noticias/${item.id}`} key={item.id}><small>{item.date}</small><span><strong>{item.title}</strong><em>{item.summary}</em></span></Link>)}<Link className="home-desk-all" href="/noticias">Ver todas as notícias <ArrowRight size={15}/></Link></section>
+        <article className="home-desk-feature"><Link href={`/noticias/${main.id}`}><div className={`home-desk-image ${main.image?"has-image":"is-placeholder"}`} style={main.image?{backgroundImage:`url(${JSON.stringify(main.image)})`}:undefined}/><div className="home-desk-meta"><span>{main.category}</span><small><Clock size={13}/> {main.date}</small></div><h2>{main.title}</h2><p>{main.summary}</p><b>Ler matéria completa <ArrowRight size={16}/></b></Link></article>
+        <aside className="home-desk-radar"><div className="home-desk-title">No radar</div>{radar.map(([category,data],index)=><Link href={`/noticias/${data.item.id}`} key={category}><b>{String(index+1).padStart(2,"0")}</b><span><strong>{category}</strong><small>{data.count} {data.count===1?"notícia":"notícias"} no recorte atual</small></span><ArrowRight size={17}/></Link>)}<Link className="home-vote-cta" href="/capivara"><Landmark size={24}/><span><strong>Como seus representantes votaram?</strong><small>Consulte decisões registradas nas fontes oficiais.</small></span><ArrowRight size={18}/></Link></aside>
+      </div>
+    </section>}
     <section className="wrap section home-latest"><SectionTitle eyebrow="MAIS NOTÍCIAS" title="Continue informado" link="/noticias"/><div className="latest-grid">{news.slice(4,10).map(item=><NewsCard item={item} key={item.id}/>)}</div></section>
   </>;
 }
