@@ -7,6 +7,7 @@ import { NewsQuestionPanel } from "@/components/news-question-panel";
 import { SafeAvatar } from "@/components/safe-avatar";
 import { PageShell } from "@/components/ui";
 import { getNewsById } from "@/lib/data";
+import { isSubstantialNews } from "@/lib/content-quality";
 
 const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://usecapivara.com.br").replace(/\/$/, "");
 const isoDate = (value?: string) => {
@@ -21,10 +22,12 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     const news = await getNewsById(id);
     const canonical = `/noticias/${encodeURIComponent(id)}`;
     const publishedTime = isoDate(news.publishedAt);
+    const substantial = isSubstantialNews(news);
     return {
       title: news.title,
       description: news.summary,
       alternates: { canonical },
+      robots: substantial ? undefined : { index: false, follow: true },
       openGraph: { type: "article", url: canonical, title: news.title, description: news.summary, publishedTime, images: news.image ? [{ url: news.image, alt: news.title }] : [] },
       twitter: { card: "summary_large_image", title: news.title, description: news.summary, images: news.image ? [news.image] : [] },
     };
@@ -41,6 +44,7 @@ export default async function Detail({ params }: { params: Promise<{ id: string 
   const validFeedId = Number.isInteger(feedId) && feedId > 0;
   const canonical = `${base}/noticias/${encodeURIComponent(id)}`;
   const publishedTime = isoDate(news.publishedAt);
+  const substantial = isSubstantialNews(news);
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
@@ -50,15 +54,15 @@ export default async function Detail({ params }: { params: Promise<{ id: string 
     mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
     inLanguage: "pt-BR",
     articleSection: news.category,
-    author: { "@type": "Organization", name: news.source },
+    author: { "@type": "Organization", name: "Capivara", url: base },
     publisher: { "@type": "Organization", name: "Capivara", url: base },
     ...(news.image ? { image: [news.image] } : {}),
     ...(publishedTime ? { datePublished: publishedTime, dateModified: publishedTime } : {}),
-    ...(news.sourceUrl ? { isBasedOn: news.sourceUrl } : {}),
+    ...(news.sourceUrl ? { isBasedOn: news.sourceUrl, citation: news.sourceUrl } : {}),
   };
 
   return (
-    <PageShell>
+    <PageShell monetizable={substantial}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
       <article className="news-detail-editorial">
         <header className="wrap news-detail-header">

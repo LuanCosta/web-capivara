@@ -40,7 +40,7 @@ function pageContext(pathname: string) {
   return { pageType: "institutional", contentGroup: "Institucional" };
 }
 
-export function GoogleAnalytics({ measurementId, adsenseClient }: { measurementId: string; adsenseClient: string }) {
+export function GoogleAnalytics({ measurementId }: { measurementId: string }) {
   const pathname = usePathname();
   const [consent, setConsent] = useState<Consent | null | undefined>(undefined);
   const [tagReady, setTagReady] = useState(false);
@@ -85,12 +85,6 @@ export function GoogleAnalytics({ measurementId, adsenseClient }: { measurementI
 
   return (
     <>
-      <Script
-        id="capivara-google-adsense"
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
-        strategy="afterInteractive"
-        crossOrigin="anonymous"
-      />
       <Script
         id="capivara-google-analytics"
         src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
